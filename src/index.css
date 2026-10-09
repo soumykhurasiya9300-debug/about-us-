@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --ink: #0d0d0d;
+    --ink-2: #151515;
+    --ink-3: #1c1c1c;
+    --cream: #f4efe6;
+    --cream-dim: #c9c3b7;
+    --gold: #c8a44d;
+    --gold-soft: #e0c483;
+    --rust: #b8734a;
+    --line: rgba(244, 239, 230, 0.12);
+  }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background-color: var(--ink);
+    color: #e8e4dc;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--gold);
+    color: var(--ink);
+  }
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Jost', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2723;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c8a44d;
+}
+
+/* Marquee animation */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 36s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* WhatsApp pulse animation */
+@keyframes waPulseAnimation {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.wa-pulse {
+  animation: waPulseAnimation 2.4s infinite;
+}
+

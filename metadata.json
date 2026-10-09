@@ -1,0 +1,6 @@
+{
+  "name": "About Us — The Men's & Kids Store",
+  "description": "Jabalpur's premium men's & kids fashion showroom since 2011. Casualwear, ethnicwear, sherwanis, occasionwear & festive looks at reasonable prices. Located at Marhatal, Jabalpur.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
