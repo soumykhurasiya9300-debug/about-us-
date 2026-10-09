@@ -4,15 +4,14 @@ import {
   Phone,
   MapPin,
   Clock,
-  ArrowUpRight,
+  ArrowRight,
   ExternalLink,
   Copy,
   Check,
   Instagram,
   Facebook,
-  Sparkles,
   Calendar,
-  Layers,
+  Sparkles,
 } from 'lucide-react';
 import { Language, LookbookItem } from './types';
 import {
@@ -23,7 +22,6 @@ import {
   STORE_ADDRESS_HI,
   STORE_HOURS_EN,
   STORE_HOURS_HI,
-  CATEGORIES_LIST,
   LOOKBOOK_ITEMS,
   INSTAGRAM_POSTS,
   STORE_FEATURES,
@@ -46,7 +44,7 @@ export default function App() {
   });
 
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeFilter, setActiveFilter] = useState<'all' | 'ethnic' | 'kids' | 'casual' | 'wedding'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'casual' | 'ethnic' | 'kids' | 'wedding'>('all');
   const [selectedLookbookItem, setSelectedLookbookItem] = useState<LookbookItem | null>(null);
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
@@ -81,31 +79,20 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-[#e8e4dc] selection:bg-[#c8a44d] selection:text-[#0d0d0d] relative font-sans">
-      {/* Preloader */}
+    <div className="min-h-screen bg-[#171916] text-[#F3F0E8] selection:bg-[#B49A68] selection:text-[#171916] relative font-sans">
+      {/* Branded Introduction Screen (Section 8) */}
       <Preloader language={language} />
 
-      {/* Desktop Luxury Cursor */}
+      {/* Restrained Desktop Custom Cursor (Section 14) */}
       <CustomCursor />
 
-      {/* Scroll Progress Bar */}
+      {/* Scroll Progress Bar with Antique Brass Gradient */}
       <div
-        className="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-[#c8a44d] via-[#e0c483] to-[#b8734a] z-[999] transition-all duration-100 ease-out"
+        className="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-[#B49A68] via-[#DED6C8] to-[#263D32] z-[999] transition-all duration-100 ease-out"
         style={{ width: `${scrollProgress}%` }}
       />
 
-      {/* Announcement Bar */}
-      <aside aria-label="Announcement" className="bg-[#151515] border-b border-[#f4efe6]/10 text-center py-2 px-4 text-[11px] sm:text-xs tracking-[0.24em] uppercase text-[#c9c3b7] relative z-40">
-        <span className="text-[#c8a44d] mr-2">✦</span>
-        <span>
-          {language === 'hi'
-            ? 'नए त्योहार और शादी कलेक्शन अब स्टोर में उपलब्ध · मरहटल, जबलपुर पधारें'
-            : 'New Festive & Wedding Collections In-Store · Visit Us at Marhatal, Jabalpur'}
-        </span>
-        <span className="text-[#c8a44d] ml-2">✦</span>
-      </aside>
-
-      {/* Top Navigation */}
+      {/* Top Navigation Bar (Section 7) */}
       <Navbar
         language={language}
         onLanguageChange={handleLanguageChange}
@@ -113,460 +100,521 @@ export default function App() {
       />
 
       <main>
-        {/* ================= HERO SECTION ================= */}
-        <section id="home" className="relative min-h-[92vh] flex items-center px-6 sm:px-12 py-16 sm:py-24 overflow-hidden border-b border-[#f4efe6]/10">
-          {/* Background Editorial Visual with Tint */}
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* ================= HOMEPAGE HERO (Section 9) ================= */}
+        {/* Background: Ink Black #171916, Asymmetrical Editorial Composition */}
+        <section
+          id="home"
+          className="relative min-h-[88svh] lg:min-h-[94svh] flex items-center px-6 sm:px-12 lg:px-16 py-16 lg:py-24 overflow-hidden bg-[#171916] border-b border-[#B49A68]/20"
+        >
+          {/* Asymmetrical Editorial Fashion Visual (occupying ~60-70% visual field on desktop) */}
+          <div className="absolute inset-0 lg:left-[36%] z-0 overflow-hidden pointer-events-none">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=2400&q=80"
-              alt="Luxury Menswear & Kidswear Editorial"
-              className="w-full h-full object-cover scale-105 filter brightness-[0.38] contrast-[1.08] saturate-[0.85]"
+              alt="Contemporary Indian Menswear & Occasionwear"
+              className="w-full h-full object-cover object-[center_28%] filter brightness-[0.45] lg:brightness-[0.55] contrast-[1.08] saturate-[0.88]"
             />
-            {/* Scrim Gradients */}
-            <div className="absolute inset-0 bg-radial-[ellipse_at_20%_35%] from-[#b8734a]/18 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d0d]/60 via-[#0d0d0d]/40 to-[#0d0d0d]" />
+            {/* Soft dark vignetting creating high text legibility on the left column */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#171916] via-[#171916]/80 to-transparent hidden lg:block" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#171916]/75 via-[#171916]/45 to-[#171916] lg:hidden" />
           </div>
 
-          <div className="relative z-10 max-w-[1440px] mx-auto w-full">
-            <div className="max-w-3xl">
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-3 text-xs sm:text-sm tracking-[0.45em] uppercase text-[#c8a44d] mb-6 font-medium">
-                <span className="w-9 h-[1px] bg-[#c8a44d]" />
-                <span>
-                  {language === 'hi' ? '2011 से · मरहटल, जबलपुर' : 'Since 2011 · Marhatal, Jabalpur'}
-                </span>
+          <div className="relative z-10 max-w-[1400px] mx-auto w-full">
+            <div className="max-w-2xl lg:max-w-xl">
+              {/* Category / Location Kicker */}
+              <div className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#B49A68] mb-6 font-medium">
+                <span className="w-8 h-[1px] bg-[#B49A68]" />
+                <span>{language === 'hi' ? 'जबलपुर · स्थापना 2011' : 'JABALPUR · EST. 2011'}</span>
               </div>
 
-              {/* Headline */}
-              <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.04] text-[#f4efe6] font-normal tracking-tight mb-8">
+              {/* The Central Creative Headline: "YOUR STYLE. YOUR MOMENT." */}
+              <h1 className="font-serif text-5xl sm:text-7xl lg:text-[5.5rem] leading-[1.0] text-[#F3F0E8] font-normal tracking-tight mb-8">
                 {language === 'hi' ? (
                   <>
-                    जबलपुर का प्रतिष्ठित फैशन ठिकाना — <em className="italic text-[#c8a44d]">पुरुष</em> और बच्चों के लिए।
+                    आपकी स्टाइल।<br />
+                    <span className="italic text-[#B49A68]">आपका पल।</span>
                   </>
                 ) : (
                   <>
-                    Jabalpur’s Fashion Destination for <em className="italic text-[#c8a44d]">Men</em> &amp; Kids.
+                    YOUR STYLE.<br />
+                    <span className="italic text-[#B49A68]">YOUR MOMENT.</span>
                   </>
                 )}
               </h1>
 
-              {/* Lead Text */}
-              <p className="text-[#c9c3b7] text-base sm:text-lg font-light leading-relaxed max-w-2xl mb-10">
+              {/* Supporting Copy */}
+              <p className="text-[#DED6C8] text-base sm:text-lg font-light leading-relaxed max-w-lg mb-10 font-sans">
                 {language === 'hi'
-                  ? 'रोज़मर्रा के कैज़ुअल, त्योहारों की पसंद, और शादी के लिए तैयार एथनिक वियर — आधुनिक पुरुष और नन्हे राजकुमार के लिए। जबलपुर के दिल में, बेहतरीन गुणवत्ता उचित दाम पर।'
-                  : 'Everyday casuals, festive favourites, and wedding-ready ethnicwear — curated for the modern man and the little gentleman. Premium craftsmanship at reasonable prices, right in the heart of Jabalpur.'}
+                  ? 'अबाउट अस जबलपुर में आधुनिक मेन्स कैज़ुअल फैशन, बच्चों के परिधान और शादी-त्योहारों के खास स्टाइल की तलाश करें।'
+                  : 'Discover contemporary men’s fashion, kidswear, and occasion-ready styles at About Us, Jabalpur.'}
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              {/* Primary & Secondary CTAs */}
+              <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href="#men"
-                  className="inline-flex items-center gap-2.5 bg-[#f4efe6] hover:bg-[#c8a44d] text-[#0d0d0d] px-7 py-3.5 rounded-full text-xs font-sans uppercase tracking-[0.22em] font-semibold transition-all duration-300 hover:-translate-y-0.5 shadow-xl"
+                  href="#everyday"
+                  className="inline-flex items-center gap-3 bg-[#F3F0E8] hover:bg-[#DED6C8] text-[#171916] px-7 py-3.5 rounded text-xs font-sans uppercase tracking-[0.2em] font-semibold transition-all duration-200 group"
                 >
-                  <span>{language === 'hi' ? 'कलेक्शन देखें' : 'Explore Collections'}</span>
-                  <ArrowUpRight className="w-4 h-4" />
+                  <span>{language === 'hi' ? 'कलेक्शन देखें' : 'EXPLORE COLLECTIONS'}</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </a>
 
                 <button
                   type="button"
                   onClick={() => setIsEnquiryModalOpen(true)}
-                  className="inline-flex items-center gap-2.5 border border-[#f4efe6]/35 hover:border-[#c8a44d] text-[#f4efe6] hover:text-[#e0c483] px-7 py-3.5 rounded-full text-xs font-sans uppercase tracking-[0.22em] font-medium transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm"
+                  className="inline-flex items-center gap-2.5 border border-[#B49A68]/60 hover:border-[#B49A68] text-[#F3F0E8] hover:bg-[#263D32]/30 px-6 py-3.5 rounded text-xs font-sans uppercase tracking-[0.2em] font-medium transition-all duration-200"
                 >
-                  <Calendar className="w-4 h-4 text-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'ट्रायल आरक्षित करें' : 'Book Showroom Trial'}</span>
+                  <Calendar className="w-4 h-4 text-[#B49A68]" />
+                  <span>{language === 'hi' ? 'स्टोर विज़िट बुक करें' : 'VISIT OUR STORE'}</span>
                 </button>
+              </div>
 
-                <a
-                  href="#visit"
-                  className="inline-flex items-center gap-2.5 text-[#c9c3b7] hover:text-[#f4efe6] px-5 py-3.5 text-xs font-sans uppercase tracking-[0.2em] transition-colors"
-                >
-                  <MapPin className="w-4 h-4 text-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'स्टोर का रास्ता' : 'Store Directions'}</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Quick Meta Indicators */}
-            <div className="pt-16 sm:pt-20 border-t border-[#f4efe6]/10 mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-xs text-[#c9c3b7] tracking-[0.2em] uppercase font-sans">
-              <div className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c8a44d]" />
-                <span>{language === 'hi' ? 'पुरुष वस्त्र' : "Men's Collection"}</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c8a44d]" />
-                <span>{language === 'hi' ? 'बच्चों के परिधान' : 'Kids Fashion (1-14 yrs)'}</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c8a44d]" />
-                <span>{language === 'hi' ? 'वेडिंग शेरवानी' : 'The Groom Edit'}</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c8a44d]" />
-                <span>{language === 'hi' ? 'मरहटल, जबलपुर' : 'Marhatal Showroom'}</span>
+              {/* Three Concept Pillars strip */}
+              <div className="mt-14 pt-8 border-t border-[#F3F0E8]/10 flex flex-wrap gap-8 text-[11px] tracking-[0.25em] uppercase text-[#DED6C8]/80 font-sans">
+                <div>01 — <span className="text-[#F3F0E8] font-medium">EVERYDAY STYLE</span></div>
+                <div>02 — <span className="text-[#F3F0E8] font-medium">OCCASION READY</span></div>
+                <div>03 — <span className="text-[#F3F0E8] font-medium">FAMILY DRESSING</span></div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ================= MARQUEE ================= */}
-        <section aria-label="Collections overview" className="bg-[#151515] border-b border-[#f4efe6]/10 py-5 overflow-hidden">
-          <div className="animate-marquee font-serif text-xl sm:text-2xl text-[#c9c3b7] italic tracking-[0.16em]">
-            {[1, 2].map((group) => (
-              <span key={group} className="flex items-center gap-10 whitespace-nowrap px-4">
-                <span>Casualwear</span>
-                <span className="text-[#c8a44d] not-italic text-sm">✦</span>
-                <span>Ethnicwear</span>
-                <span className="text-[#c8a44d] not-italic text-sm">✦</span>
-                <span>Sherwanis</span>
-                <span className="text-[#c8a44d] not-italic text-sm">✦</span>
-                <span>Indo-Western</span>
-                <span className="text-[#c8a44d] not-italic text-sm">✦</span>
-                <span>Denim &amp; Linen</span>
-                <span className="text-[#c8a44d] not-italic text-sm">✦</span>
+        {/* ================= MARQUEE EDITORIAL SEPARATOR ================= */}
+        <div aria-hidden="true" className="bg-[#171916] border-b border-[#B49A68]/20 py-4 overflow-hidden">
+          <div className="animate-marquee font-serif text-lg sm:text-xl text-[#DED6C8] tracking-[0.18em]">
+            {[1, 2].map((i) => (
+              <span key={i} className="flex items-center gap-12 whitespace-nowrap px-6">
+                <span>Everyday Style</span>
+                <span className="text-[#B49A68] text-xs">✦</span>
+                <span>Occasion Ready</span>
+                <span className="text-[#B49A68] text-xs">✦</span>
+                <span>Family Dressing</span>
+                <span className="text-[#B49A68] text-xs">✦</span>
+                <span>Sherwanis &amp; Kurtas</span>
+                <span className="text-[#B49A68] text-xs">✦</span>
+                <span>Linen Shirts &amp; Denim</span>
+                <span className="text-[#B49A68] text-xs">✦</span>
                 <span>Boys Kidswear</span>
-                <span className="text-[#c8a44d] not-italic text-sm">✦</span>
-                <span>Wedding Edit</span>
-                <span className="text-[#c8a44d] not-italic text-sm">✦</span>
-                <span>Festive Looks</span>
-                <span className="text-[#c8a44d] not-italic text-sm">✦</span>
+                <span className="text-[#B49A68] text-xs">✦</span>
+                <span>Marhatal, Jabalpur</span>
+                <span className="text-[#B49A68] text-xs">✦</span>
               </span>
             ))}
           </div>
-        </section>
+        </div>
 
-        {/* ================= MEN'S COLLECTION ================= */}
-        <section id="men" className="py-24 sm:py-32 px-6 sm:px-12 border-b border-[#f4efe6]/10">
-          <div className="max-w-[1440px] mx-auto">
-            {/* Header */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mb-16">
-              <div>
-                <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-[#c8a44d] mb-4 font-medium">
-                  <span className="w-7 h-[1px] bg-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'पुरुष संग्रह' : "The Men's Edit"}</span>
-                </span>
-                <h2 className="font-serif text-3xl sm:text-5xl text-[#f4efe6] font-normal leading-tight">
+        {/* ================= SECTION 01 — INTRODUCING THE BRAND (LIGHT SECTION) ================= */}
+        {/* Background: Warm Ivory #F3F0E8 */}
+        <section className="py-24 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#F3F0E8] text-[#171916] border-b border-[#B49A68]/20">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              {/* Text Area with Generous Whitespace */}
+              <div className="lg:col-span-7">
+                <div className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#263D32] mb-6 font-semibold font-sans">
+                  <span className="w-8 h-[1px] bg-[#263D32]" />
+                  <span>{language === 'hi' ? 'द सेंट्रल कॉन्सेप्ट' : 'THE PHILOSOPHY'}</span>
+                </div>
+
+                <h2 className="font-serif text-4xl sm:text-6xl text-[#171916] font-normal leading-[1.08] tracking-tight mb-8">
                   {language === 'hi' ? (
                     <>
-                      हर <em className="italic text-[#c8a44d]">अवसर</em> के लिए उत्कृष्ट पोशाक।
+                      शानदार स्टाइल किसी <br />
+                      <span className="italic text-[#263D32]">एक मौके के लिए</span> नहीं होती।
                     </>
                   ) : (
                     <>
-                      Dressed for every <em className="italic text-[#c8a44d]">moment.</em>
+                      Good style isn’t for <br />
+                      <span className="italic text-[#263D32]">one occasion.</span>
+                    </>
+                  )}
+                </h2>
+
+                <p className="text-[#292B27] text-base sm:text-lg font-light leading-relaxed max-w-xl mb-8 font-sans">
+                  {language === 'hi'
+                    ? 'रोज़मर्रा की पसंदीदा पोशाक से लेकर जीवन के सबसे खास उत्सवों तक — ऐसे परिधान जो हर पल को यादगार बनाते हैं। अबाउट अस में आधुनिक पुरुषों और बच्चों के लिए हर दिन का आत्मविश्वास और शादी-त्योहारों की शान एक ही छत के नीचे मौजूद है।'
+                    : 'From everyday favourites to special celebrations, discover looks for the moments that matter. One customer might be shopping for a relaxed linen shirt. Another might be choosing a wedding sherwani. A parent might be dressing their child for festive gatherings.'}
+                </p>
+
+                {/* Three Visual Personalities */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-[#171916]/10 text-xs font-sans">
+                  <div>
+                    <span className="text-[#B49A68] font-serif text-base block font-normal">01</span>
+                    <h4 className="font-semibold text-[#171916] uppercase tracking-wider mt-1 mb-1">
+                      {language === 'hi' ? 'एवरीडे स्टाइल' : 'EVERYDAY STYLE'}
+                    </h4>
+                    <p className="text-[#88867F] font-light leading-snug">
+                      {language === 'hi' ? 'रिलैक्स्ड, एनर्जेटिक और युवा आत्मविश्वास।' : 'Contemporary, relaxed, youthful & confident.'}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[#B49A68] font-serif text-base block font-normal">02</span>
+                    <h4 className="font-semibold text-[#171916] uppercase tracking-wider mt-1 mb-1">
+                      {language === 'hi' ? 'ऑकेज़न रेडी' : 'OCCASION READY'}
+                    </h4>
+                    <p className="text-[#88867F] font-light leading-snug">
+                      {language === 'hi' ? 'सोफिस्टिकेटेड, सांस्कृतिक और शाही ठाठ।' : 'Polished, expressive & culturally relevant.'}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[#B49A68] font-serif text-base block font-normal">03</span>
+                    <h4 className="font-semibold text-[#171916] uppercase tracking-wider mt-1 mb-1">
+                      {language === 'hi' ? 'फैमिली स्टाइल' : 'FAMILY STYLE'}
+                    </h4>
+                    <p className="text-[#88867F] font-light leading-snug">
+                      {language === 'hi' ? 'बच्चों के लिए आरामदायक और सुरुचिपूर्ण।' : 'Warm, approachable & comfortable.'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Asymmetrical Overlapping Fashion Editorial Visual */}
+              <div className="lg:col-span-5 relative">
+                <div
+                  data-cursor="view"
+                  onClick={() => setSelectedLookbookItem(LOOKBOOK_ITEMS[0])}
+                  className="aspect-[3/4] rounded overflow-hidden shadow-2xl bg-[#DED6C8] border border-[#B49A68]/30 cursor-pointer group"
+                >
+                  <ImageWithFallback
+                    src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1200&q=80"
+                    alt="Editorial Kurta and Bandhgala Craftsmanship"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95"
+                  />
+                </div>
+                {/* Secondary detail overlay card */}
+                <div className="absolute -bottom-6 -left-6 bg-[#263D32] text-[#F3F0E8] p-5 rounded shadow-xl border border-[#B49A68]/30 max-w-[240px] hidden sm:block">
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#B49A68] block font-sans font-medium mb-1">
+                    {language === 'hi' ? 'कलेक्शन झलक' : 'COLLECTION HIGHLIGHT'}
+                  </span>
+                  <p className="font-serif text-lg leading-tight font-normal">
+                    {language === 'hi' ? 'शाही ब्रोकेड और लिनन फिनिश' : 'Bespoke Silk & Crisp Italian Linen'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= SECTION 02 — MEN'S EVERYDAY STYLE ================= */}
+        {/* Background: Soft Sand #DED6C8 */}
+        <section id="everyday" className="py-24 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#DED6C8] text-[#171916] border-b border-[#B49A68]/20">
+          <div className="max-w-[1400px] mx-auto">
+            {/* Header */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16">
+              <div className="lg:col-span-8">
+                <span className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#263D32] mb-3 font-semibold font-sans">
+                  <span className="w-7 h-[1px] bg-[#263D32]" />
+                  <span>{language === 'hi' ? 'पुरुष रोज़मर्रा संग्रह' : "01 — MEN'S EVERYDAY STYLE"}</span>
+                </span>
+                <h2 className="font-serif text-4xl sm:text-6xl text-[#171916] font-normal leading-tight tracking-tight">
+                  {language === 'hi' ? (
+                    <>
+                      हर दिन के लिए <span className="italic text-[#263D32]">तैयार।</span>
+                    </>
+                  ) : (
+                    <>
+                      Made for <span className="italic text-[#263D32]">everyday.</span>
                     </>
                   )}
                 </h2>
               </div>
-              <p className="text-[#c9c3b7] text-sm sm:text-base font-light max-w-md md:ml-auto">
-                {language === 'hi'
-                  ? 'सोमवार की सुबह की शर्ट से लेकर शादी की रात की शेरवानी तक — उस पुरुष के लिए जो जानता है कि वह क्या पहनना चाहता है।'
-                  : 'From Monday-morning linen shirts to wedding-night sherwanis — a considered wardrobe for the gentleman who values sharp tailoring.'}
-              </p>
+              <div className="lg:col-span-4">
+                <p className="text-[#292B27] text-sm sm:text-base font-light leading-relaxed font-sans">
+                  {language === 'hi'
+                    ? 'ऐसे कैज़ुअल स्टाइल जो आपकी दैनिक दिनचर्या और सहज व्यक्तित्व में पूरी तरह ढल जाएं। शुद्ध लिनन, जापानी सेल्वेज डेनिम और सुपरसॉफ्ट टी-शर्ट्स।'
+                    : 'Explore casual styles that fit your everyday routine. Natural linen shirts, raw denim, and relaxed silhouettes built for effortless comfort.'}
+                </p>
+              </div>
             </div>
 
-            {/* Featured Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
-              {/* Card 1: Ethnicwear (7 cols) */}
+            {/* Dynamic Asymmetrical Layout: Large Image + Text & Detail */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Large Image on Left (7 cols) */}
               <div
-                onClick={() => {
-                  setActiveFilter('ethnic');
-                  setSelectedLookbookItem(LOOKBOOK_ITEMS[0]);
-                }}
-                className="lg:col-span-7 relative min-h-[460px] rounded overflow-hidden bg-[#151515] group cursor-pointer border border-[#f4efe6]/10"
-              >
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1400&q=80"
-                  alt="Men's Ethnicwear Collection"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-[0.7] group-hover:brightness-[0.82]"
-                />
-                <div className="absolute top-6 right-6 w-11 h-11 rounded-full border border-[#f4efe6]/30 bg-[#0d0d0d]/40 backdrop-blur-md flex items-center justify-center text-[#f4efe6] group-hover:bg-[#c8a44d] group-hover:border-[#c8a44d] group-hover:text-[#0d0d0d] transition-all duration-300">
-                  <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10 bg-gradient-to-t from-[#0d0d0d]/95 via-[#0d0d0d]/70 to-transparent">
-                  <div className="text-[11px] uppercase tracking-[0.35em] text-[#c8a44d] font-sans font-medium mb-2">
-                    {language === 'hi' ? 'एथनिक वियर' : 'Festive & Occasion'}
-                  </div>
-                  <h3 className="font-serif text-2xl sm:text-4xl text-[#f4efe6] font-normal mb-2">
-                    {language === 'hi' ? 'कुर्ते, शेरवानी और इंडो-वेस्टर्न' : 'Kurtas, Sherwanis & Indo-Western'}
-                  </h3>
-                  <p className="text-sm text-[#c9c3b7] font-light max-w-lg transition-all duration-300">
-                    {language === 'hi'
-                      ? 'शादी के लिए तैयार, त्योहारी रंग और सधी हुई फिटिंग। मरहटल शोरूम में नए कट्स।'
-                      : 'Wedding-ready silhouettes, festive jewel tones, and tailored fits.'}
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2: Casualwear (5 cols) */}
-              <div
+                data-cursor="explore"
                 onClick={() => {
                   setActiveFilter('casual');
                   setSelectedLookbookItem(LOOKBOOK_ITEMS[1]);
                 }}
-                className="lg:col-span-5 relative min-h-[460px] rounded overflow-hidden bg-[#151515] group cursor-pointer border border-[#f4efe6]/10"
+                className="lg:col-span-7 aspect-[16/10] sm:aspect-[16/9] rounded overflow-hidden bg-[#F3F0E8] border border-[#B49A68]/30 shadow-lg cursor-pointer group relative"
               >
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80"
-                  alt="Men's Casualwear Collection"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-[0.7] group-hover:brightness-[0.82]"
+                  src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1600&q=80"
+                  alt="Men's Casual Wear Collection"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95"
                 />
-                <div className="absolute top-6 right-6 w-11 h-11 rounded-full border border-[#f4efe6]/30 bg-[#0d0d0d]/40 backdrop-blur-md flex items-center justify-center text-[#f4efe6] group-hover:bg-[#c8a44d] group-hover:border-[#c8a44d] group-hover:text-[#0d0d0d] transition-all duration-300">
-                  <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10 bg-gradient-to-t from-[#0d0d0d]/95 via-[#0d0d0d]/70 to-transparent">
-                  <div className="text-[11px] uppercase tracking-[0.35em] text-[#c8a44d] font-sans font-medium mb-2">
-                    {language === 'hi' ? 'कैज़ुअल वियर' : 'Everyday Staples'}
-                  </div>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#f4efe6] font-normal mb-2">
-                    {language === 'hi' ? 'शर्ट · टी-शर्ट · डेनिम' : 'Shirts · Tees · Denim'}
-                  </h3>
-                  <p className="text-sm text-[#c9c3b7] font-light max-w-sm transition-all duration-300">
-                    {language === 'hi'
-                      ? 'आधुनिक ट्रेंड्स, प्रीमियम लिनन और आरामदायक फिट।'
-                      : 'Refined everyday essentials, breathable fabrics, and effortless style.'}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Category Grid Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-              {CATEGORIES_LIST.map((cat) => (
-                <div
-                  key={cat.number}
-                  onClick={() => {
-                    setActiveFilter(cat.filterTag);
-                    const el = document.getElementById('gallery');
-                    el?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="p-5 sm:p-6 bg-[#151515] border border-[#f4efe6]/10 hover:border-[#c8a44d] rounded transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between min-h-[160px] group cursor-pointer"
-                >
-                  <span className="font-serif text-xs text-[#c8a44d] font-normal">
-                    {cat.number}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#171916]/80 via-transparent to-transparent flex flex-col justify-end p-8 text-[#F3F0E8]">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#B49A68] font-sans font-medium mb-1">
+                    {language === 'hi' ? 'आराम और स्टाइल' : 'BREATHABLE & TAILORED'}
                   </span>
-                  <div>
-                    <h4 className="font-serif text-lg sm:text-xl text-[#f4efe6] group-hover:text-[#e0c483] transition-colors leading-tight mb-1">
-                      {language === 'hi' ? cat.nameHi : cat.nameEn}
-                    </h4>
-                    <p className="text-[11px] text-[#c9c3b7] font-sans font-light">
-                      {language === 'hi' ? cat.subHi : cat.subEn}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ================= KIDS' COLLECTION ================= */}
-        <section id="kids" className="py-24 sm:py-32 px-6 sm:px-12 bg-[#151515] border-b border-[#f4efe6]/10">
-          <div className="max-w-[1440px] mx-auto">
-            {/* Header */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mb-16">
-              <div>
-                <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-[#c8a44d] mb-4 font-medium">
-                  <span className="w-7 h-[1px] bg-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'बच्चों का संग्रह' : "The Kids Edit"}</span>
-                </span>
-                <h2 className="font-serif text-3xl sm:text-5xl text-[#f4efe6] font-normal leading-tight">
-                  {language === 'hi' ? (
-                    <>
-                      छोटे कपड़े, <em className="italic text-[#c8a44d]">बड़े पल।</em>
-                    </>
-                  ) : (
-                    <>
-                      Little looks, <em className="italic text-[#c8a44d]">big moments.</em>
-                    </>
-                  )}
-                </h2>
-              </div>
-              <p className="text-[#c9c3b7] text-sm sm:text-base font-light max-w-md md:ml-auto">
-                {language === 'hi'
-                  ? 'लड़कों और बच्चों के लिए मज़ेदार, आरामदायक और उत्सव के लिए तैयार कपड़े — क्योंकि स्टाइल कम उम्र में ही शुरू होती है।'
-                  : 'Playful, comfortable, and celebration-ready clothing for boys and children — because style starts young.'}
-              </p>
-            </div>
-
-            {/* Kids Showcase Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Card 1: Kids Everyday */}
-              <div
-                onClick={() => {
-                  setActiveFilter('kids');
-                  setSelectedLookbookItem(LOOKBOOK_ITEMS[2]);
-                }}
-                className="lg:col-span-5 relative min-h-[440px] rounded overflow-hidden bg-[#1c1c1c] group cursor-pointer border border-[#f4efe6]/10"
-              >
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=1200&q=80"
-                  alt="Kids everyday wear"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-[0.75] group-hover:brightness-[0.85]"
-                />
-                <div className="absolute top-6 right-6 w-11 h-11 rounded-full border border-[#f4efe6]/30 bg-[#0d0d0d]/40 backdrop-blur-md flex items-center justify-center text-[#f4efe6] group-hover:bg-[#c8a44d] group-hover:border-[#c8a44d] group-hover:text-[#0d0d0d] transition-all duration-300">
-                  <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10 bg-gradient-to-t from-[#0d0d0d]/95 via-[#0d0d0d]/70 to-transparent">
-                  <div className="text-[11px] uppercase tracking-[0.35em] text-[#c8a44d] font-sans font-medium mb-2">
-                    {language === 'hi' ? 'रोज़मर्रा और खेल' : 'Daily Comfort'}
-                  </div>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#f4efe6] font-normal mb-2">
-                    {language === 'hi' ? 'कैज़ुअल और आराम' : 'Casual & Comfort'}
+                  <h3 className="font-serif text-2xl sm:text-3xl font-normal">
+                    {language === 'hi' ? 'इटैलियन लिनन और हेवीवेट डेनिम' : 'Pure Linen Shirts & Selvedge Denim'}
                   </h3>
-                  <p className="text-sm text-[#c9c3b7] font-light max-w-sm">
-                    {language === 'hi'
-                      ? 'पूरे दिन खेलने और आराम के लिए मुलायम, हवादार कॉटन।'
-                      : 'Soft natural fabrics for all-day play and school days.'}
-                  </p>
                 </div>
               </div>
 
-              {/* Card 2: Kids Festive & Partywear */}
-              <div
-                onClick={() => {
-                  setActiveFilter('kids');
-                  setSelectedLookbookItem(LOOKBOOK_ITEMS[5]);
-                }}
-                className="lg:col-span-7 relative min-h-[440px] rounded overflow-hidden bg-[#1c1c1c] group cursor-pointer border border-[#f4efe6]/10"
-              >
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=1400&q=80"
-                  alt="Kids festive and partywear"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-[0.75] group-hover:brightness-[0.85]"
-                />
-                <div className="absolute top-6 right-6 w-11 h-11 rounded-full border border-[#f4efe6]/30 bg-[#0d0d0d]/40 backdrop-blur-md flex items-center justify-center text-[#f4efe6] group-hover:bg-[#c8a44d] group-hover:border-[#c8a44d] group-hover:text-[#0d0d0d] transition-all duration-300">
-                  <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" />
+              {/* Smaller Detail Image + Key Categories on Right (5 cols) */}
+              <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+                <div
+                  data-cursor="view"
+                  onClick={() => {
+                    setActiveFilter('casual');
+                    setSelectedLookbookItem(LOOKBOOK_ITEMS[4]);
+                  }}
+                  className="aspect-[4/3] rounded overflow-hidden bg-[#F3F0E8] border border-[#B49A68]/30 shadow-md cursor-pointer group"
+                >
+                  <ImageWithFallback
+                    src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=80"
+                    alt="Linen Button-down Details"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
-                <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10 bg-gradient-to-t from-[#0d0d0d]/95 via-[#0d0d0d]/70 to-transparent">
-                  <div className="text-[11px] uppercase tracking-[0.35em] text-[#c8a44d] font-sans font-medium mb-2">
-                    {language === 'hi' ? 'त्योहार और पार्टी' : 'Celebration Edit'}
+
+                <div className="bg-[#F3F0E8] p-6 rounded border border-[#B49A68]/20">
+                  <div className="text-[11px] uppercase tracking-[0.25em] text-[#263D32] font-semibold mb-3 font-sans">
+                    {language === 'hi' ? 'कैज़ुअल वॉर्डरोब' : 'CASUAL STAPLES IN-STORE'}
                   </div>
-                  <h3 className="font-serif text-2xl sm:text-4xl text-[#f4efe6] font-normal mb-2">
-                    {language === 'hi' ? 'नन्हों के लिए उत्सव के कपड़े' : 'Celebration-Ready for Little Ones'}
-                  </h3>
-                  <p className="text-sm text-[#c9c3b7] font-light max-w-lg">
-                    {language === 'hi'
-                      ? 'फेस्टिव कुर्ता-धोती सेट, सूट-ब्लेज़र और मैचिंग एक्सेसरीज़ (आयु 1 से 14 वर्ष)।'
-                      : 'Miniature festive kurtas, waistcoats, and tuxedos tailored with gentle linings.'}
-                  </p>
+                  <div className="grid grid-cols-2 gap-3 text-xs font-sans text-[#171916]">
+                    <div className="py-1 border-b border-[#171916]/10">01. Crisp Linen Shirts</div>
+                    <div className="py-1 border-b border-[#171916]/10">02. Pima Cotton Polos</div>
+                    <div className="py-1 border-b border-[#171916]/10">03. Comfort Selvedge Denim</div>
+                    <div className="py-1 border-b border-[#171916]/10">04. Tailored Chinos</div>
+                  </div>
+                  <div className="mt-5">
+                    <a
+                      href="#gallery"
+                      onClick={() => setActiveFilter('casual')}
+                      className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#171916] hover:text-[#263D32] group"
+                    >
+                      <span>{language === 'hi' ? 'कैज़ुअल लुक देखें' : 'EXPLORE CASUAL LOOKS'}</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ================= OCCASIONWEAR & WEDDING ================= */}
-        <section id="occasion" className="py-24 sm:py-32 px-6 sm:px-12 border-b border-[#f4efe6]/10">
-          <div className="max-w-[1440px] mx-auto">
+        {/* ================= SECTION 03 — OCCASIONWEAR (DARK SECTION) ================= */}
+        {/* Background: Ink Black #171916 */}
+        <section id="occasion" className="py-24 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#171916] text-[#F3F0E8] border-b border-[#B49A68]/20">
+          <div className="max-w-[1400px] mx-auto">
             {/* Header */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mb-16">
-              <div>
-                <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-[#c8a44d] mb-4 font-medium">
-                  <span className="w-7 h-[1px] bg-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'अवसर वस्त्र' : 'Occasionwear'}</span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16">
+              <div className="lg:col-span-8">
+                <span className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#B49A68] mb-3 font-semibold font-sans">
+                  <span className="w-7 h-[1px] bg-[#B49A68]" />
+                  <span>{language === 'hi' ? 'अवसर व उत्सव संग्रह' : '02 — OCCASION READY'}</span>
                 </span>
-                <h2 className="font-serif text-3xl sm:text-5xl text-[#f4efe6] font-normal leading-tight">
+                <h2 className="font-serif text-4xl sm:text-6xl text-[#F3F0E8] font-normal leading-tight tracking-tight">
                   {language === 'hi' ? (
                     <>
-                      उन दिनों के लिए जिन्हें आप <em className="italic text-[#c8a44d]">याद रखेंगे।</em>
+                      जब मौका कुछ खास की <br />
+                      <span className="italic text-[#B49A68]">मांग करे।</span>
                     </>
                   ) : (
                     <>
-                      For the days you’ll <em className="italic text-[#c8a44d]">remember.</em>
+                      When the moment <br />
+                      <span className="italic text-[#B49A68]">calls for more.</span>
                     </>
                   )}
                 </h2>
               </div>
-              <p className="text-[#c9c3b7] text-sm sm:text-base font-light max-w-md md:ml-auto">
-                {language === 'hi'
-                  ? 'शादी, रिसेप्शन, त्योहार और पारिवारिक उत्सव — ऐसे परिधान जो आपको और आपके परिवार को अलग और सम्मानित पहचान दें।'
-                  : 'Weddings, receptions, festivals and family celebrations — discover looks designed to make a memorable entrance.'}
-              </p>
+              <div className="lg:col-span-4">
+                <p className="text-[#DED6C8] text-sm sm:text-base font-light leading-relaxed font-sans">
+                  {language === 'hi'
+                    ? 'उत्सवों, शादियों और खास पारिवारिक मिलन के लिए एथनिक और अवसर-अनुकूल परिधान। शाही शेरवानी, जरदोज़ी काम और आधुनिक इंडो-वेस्टर्न कट्स।'
+                    : 'Discover ethnic and occasion-ready styles for celebrations, weddings, and special gatherings. Regal silhouettes and rich textile craft without excessive ornamentation.'}
+                </p>
+              </div>
             </div>
 
-            {/* Three Pillar Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Card 1: Wedding Guests */}
+            {/* Asymmetrical 3-Card Editorial Gallery */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              {/* Card 1: The Groom Sherwani */}
               <div
-                onClick={() => {
-                  setActiveFilter('ethnic');
-                  setSelectedLookbookItem(LOOKBOOK_ITEMS[7]);
-                }}
-                className="relative min-h-[420px] rounded overflow-hidden bg-[#151515] group cursor-pointer border border-[#f4efe6]/10"
-              >
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1593030103066-0093718efeb9?auto=format&fit=crop&w=1000&q=80"
-                  alt="Wedding guest looks"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-[0.7] group-hover:brightness-[0.82]"
-                />
-                <div className="absolute top-5 right-5 w-10 h-10 rounded-full border border-[#f4efe6]/30 bg-[#0d0d0d]/40 backdrop-blur-md flex items-center justify-center text-[#f4efe6] group-hover:bg-[#c8a44d] group-hover:border-[#c8a44d] group-hover:text-[#0d0d0d] transition-all duration-300">
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 bg-gradient-to-t from-[#0d0d0d]/95 via-[#0d0d0d]/70 to-transparent">
-                  <div className="text-[10px] uppercase tracking-[0.35em] text-[#c8a44d] font-sans font-medium mb-1.5">
-                    {language === 'hi' ? 'शादी के मेहमान' : 'Wedding Guests'}
-                  </div>
-                  <h3 className="font-serif text-2xl text-[#f4efe6] font-normal mb-1">
-                    {language === 'hi' ? 'गेस्ट व सगी लुक' : 'Guest & Sangeet Looks'}
-                  </h3>
-                  <p className="text-xs text-[#c9c3b7] font-light">
-                    {language === 'hi' ? 'नेहरू जैकेट्स, प्रिंटेड कुर्ते और पेस्टल सेट्स।' : 'Tailored Nehru jackets, pastel linens & twin sets.'}
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2: The Groom Edit */}
-              <div
+                data-cursor="view"
                 onClick={() => {
                   setActiveFilter('wedding');
                   setSelectedLookbookItem(LOOKBOOK_ITEMS[3]);
                 }}
-                className="relative min-h-[420px] rounded overflow-hidden bg-[#151515] group cursor-pointer border border-[#c8a44d]/40 shadow-xl"
+                className="relative aspect-[4/5] rounded overflow-hidden bg-[#292B27] border border-[#B49A68]/40 shadow-xl group cursor-pointer"
               >
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80"
-                  alt="The Groom Sherwani Edit"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-[0.7] group-hover:brightness-[0.82]"
+                  alt="The Groom Wedding Sherwani"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-[0.78] group-hover:brightness-[0.9]"
                 />
-                <div className="absolute top-5 right-5 w-10 h-10 rounded-full border border-[#c8a44d] bg-[#0d0d0d]/60 backdrop-blur-md flex items-center justify-center text-[#c8a44d] group-hover:bg-[#c8a44d] group-hover:text-[#0d0d0d] transition-all duration-300">
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 bg-gradient-to-t from-[#0d0d0d]/95 via-[#0d0d0d]/70 to-transparent">
-                  <div className="text-[10px] uppercase tracking-[0.35em] text-[#c8a44d] font-sans font-medium mb-1.5">
-                    {language === 'hi' ? 'दूल्हे का संग्रह' : 'The Groom Edit'}
-                  </div>
-                  <h3 className="font-serif text-2xl text-[#f4efe6] font-normal mb-1">
-                    {language === 'hi' ? 'शाही शेरवानी' : 'Imperial Sherwanis'}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#171916] via-[#171916]/40 to-transparent p-7 flex flex-col justify-end">
+                  <span className="text-[10px] tracking-[0.3em] uppercase text-[#B49A68] font-sans font-medium mb-1">
+                    {language === 'hi' ? 'दूल्हे का संग्रह' : 'THE GROOM EDIT'}
+                  </span>
+                  <h3 className="font-serif text-2xl text-[#F3F0E8] font-normal mb-2">
+                    {language === 'hi' ? 'शाही जरदोज़ी शेरवानी' : 'Imperial Zardozi Sherwanis'}
                   </h3>
-                  <p className="text-xs text-[#c9c3b7] font-light">
-                    {language === 'hi' ? 'ज़रदोज़ी वर्क, साफा, माला और मैचिंग दुपट्टा।' : 'Zardozi craftsmanship, safa, stole & royal jewelry.'}
+                  <p className="text-xs text-[#DED6C8]/80 font-light font-sans">
+                    {language === 'hi' ? 'मोती, साफा और मैचिंग दुशाला के साथ पूर्ण सेट।' : 'Intricate embroidery with coordinated safa & stole.'}
                   </p>
                 </div>
               </div>
 
-              {/* Card 3: Celebration Looks */}
+              {/* Card 2: Festive & Guest Looks */}
               <div
+                data-cursor="view"
+                onClick={() => {
+                  setActiveFilter('ethnic');
+                  setSelectedLookbookItem(LOOKBOOK_ITEMS[7]);
+                }}
+                className="relative aspect-[4/5] rounded overflow-hidden bg-[#292B27] border border-[#B49A68]/20 shadow-lg group cursor-pointer"
+              >
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1593030103066-0093718efeb9?auto=format&fit=crop&w=1000&q=80"
+                  alt="Festive Kurtas and Nehru Jackets"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-[0.78] group-hover:brightness-[0.9]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#171916] via-[#171916]/40 to-transparent p-7 flex flex-col justify-end">
+                  <span className="text-[10px] tracking-[0.3em] uppercase text-[#B49A68] font-sans font-medium mb-1">
+                    {language === 'hi' ? 'त्योहार व मेहमान' : 'WEDDING GUEST & SANGEET'}
+                  </span>
+                  <h3 className="font-serif text-2xl text-[#F3F0E8] font-normal mb-2">
+                    {language === 'hi' ? 'कुर्ता-जैकेट ट्विन सेट' : 'Nehru Jackets & Silk Kurtas'}
+                  </h3>
+                  <p className="text-xs text-[#DED6C8]/80 font-light font-sans">
+                    {language === 'hi' ? 'शादी के मेहमानों और पूजा के लिए हल्के पेस्टल रंग।' : 'Subtle jewel and pastel tones for family celebrations.'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3: Indo-Western Fusion */}
+              <div
+                data-cursor="view"
                 onClick={() => {
                   setActiveFilter('ethnic');
                   setSelectedLookbookItem(LOOKBOOK_ITEMS[6]);
                 }}
-                className="relative min-h-[420px] rounded overflow-hidden bg-[#151515] group cursor-pointer border border-[#f4efe6]/10"
+                className="relative aspect-[4/5] rounded overflow-hidden bg-[#292B27] border border-[#B49A68]/20 shadow-lg group cursor-pointer"
               >
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1615887110697-a5e0f4c8e0e3?auto=format&fit=crop&w=1000&q=80"
-                  alt="Festive celebration looks"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-[0.7] group-hover:brightness-[0.82]"
+                  alt="Indo-Western Fusion Drape"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-[0.78] group-hover:brightness-[0.9]"
                 />
-                <div className="absolute top-5 right-5 w-10 h-10 rounded-full border border-[#f4efe6]/30 bg-[#0d0d0d]/40 backdrop-blur-md flex items-center justify-center text-[#f4efe6] group-hover:bg-[#c8a44d] group-hover:border-[#c8a44d] group-hover:text-[#0d0d0d] transition-all duration-300">
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 bg-gradient-to-t from-[#0d0d0d]/95 via-[#0d0d0d]/70 to-transparent">
-                  <div className="text-[10px] uppercase tracking-[0.35em] text-[#c8a44d] font-sans font-medium mb-1.5">
-                    {language === 'hi' ? 'त्योहार और पूजन' : 'Festive Rituals'}
-                  </div>
-                  <h3 className="font-serif text-2xl text-[#f4efe6] font-normal mb-1">
-                    {language === 'hi' ? 'दीपावली व पूजा लुक' : 'Festive & Puja Looks'}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#171916] via-[#171916]/40 to-transparent p-7 flex flex-col justify-end">
+                  <span className="text-[10px] tracking-[0.3em] uppercase text-[#B49A68] font-sans font-medium mb-1">
+                    {language === 'hi' ? 'मॉडर्न फ्यूज़न' : 'INDO-WESTERN DRAPES'}
+                  </span>
+                  <h3 className="font-serif text-2xl text-[#F3F0E8] font-normal mb-2">
+                    {language === 'hi' ? 'एसिमेट्रिक बंधगला' : 'Asymmetric Bandhgalas'}
                   </h3>
-                  <p className="text-xs text-[#c9c3b7] font-light">
-                    {language === 'hi' ? 'चंदेरी कॉटन सिल्क और पारंपरिक हाथ की कढ़ाई।' : 'Chanderi silk, festive tones & comfortable fits.'}
+                  <p className="text-xs text-[#DED6C8]/80 font-light font-sans">
+                    {language === 'hi' ? 'कॉकटेल और संगीत रातों के लिए आधुनिक स्टाइल।' : 'Contemporary drapes for cocktails & receptions.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* In-Store Fitting Callout */}
+            <div className="mt-14 pt-8 border-t border-[#F3F0E8]/10 flex flex-wrap justify-between items-center gap-6">
+              <div className="text-xs font-sans text-[#DED6C8]">
+                <span className="text-[#B49A68] font-medium mr-2">✦</span>
+                {language === 'hi'
+                  ? 'मरहटल शोरूम में कस्टम फिटिंग, अल्टरेशन और मैचिंग साफा-माला उपलब्ध है।'
+                  : 'In-house alterations, bespoke sizing & matching safas available at our Marhatal showroom.'}
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsEnquiryModalOpen(true)}
+                className="inline-flex items-center gap-2 border border-[#B49A68] hover:bg-[#B49A68] hover:text-[#171916] text-[#F3F0E8] px-5 py-2.5 rounded text-xs font-sans uppercase tracking-[0.18em] transition-all duration-200"
+              >
+                <span>{language === 'hi' ? 'शेरवानी ट्रायल बुक करें' : 'BOOK SHERWANI TRIAL'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= SECTION 04 — KIDSWEAR (LIGHT SECTION) ================= */}
+        {/* Background: Warm Ivory #F3F0E8 */}
+        <section id="kids" className="py-24 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#F3F0E8] text-[#171916] border-b border-[#B49A68]/20">
+          <div className="max-w-[1400px] mx-auto">
+            {/* Header */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16">
+              <div className="lg:col-span-8">
+                <span className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#263D32] mb-3 font-semibold font-sans">
+                  <span className="w-7 h-[1px] bg-[#263D32]" />
+                  <span>{language === 'hi' ? 'बच्चों का संग्रह' : '03 — FAMILY & KIDS STYLE'}</span>
+                </span>
+                <h2 className="font-serif text-4xl sm:text-6xl text-[#171916] font-normal leading-tight tracking-tight">
+                  {language === 'hi' ? (
+                    <>
+                      छोटे कपड़े। <span className="italic text-[#263D32]">बड़े पल।</span>
+                    </>
+                  ) : (
+                    <>
+                      Little looks. <span className="italic text-[#263D32]">Big moments.</span>
+                    </>
+                  )}
+                </h2>
+              </div>
+              <div className="lg:col-span-4">
+                <p className="text-[#292B27] text-sm sm:text-base font-light leading-relaxed font-sans">
+                  {language === 'hi'
+                    ? 'बच्चों के रोज़मर्रा के रोमांच और खास पारिवारिक उत्सवों के लिए मनमोहक परिधान। 1 से 14 वर्ष के बालकों के लिए आरामदायक कॉटन और उत्सव के खास कुर्ते।'
+                    : 'Explore children’s styles for everyday adventures and special occasions. Tailored with skin-friendly linings and comfortable mobility for boys ages 1 to 14.'}
+                </p>
+              </div>
+            </div>
+
+            {/* 2-Column Kidswear Showcase: Everyday Comfort & Celebration Partywear */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Card 1: Kids Everyday Casual (5 cols) */}
+              <div
+                data-cursor="view"
+                onClick={() => {
+                  setActiveFilter('kids');
+                  setSelectedLookbookItem(LOOKBOOK_ITEMS[2]);
+                }}
+                className="lg:col-span-5 aspect-[4/5] rounded overflow-hidden bg-[#DED6C8] border border-[#B49A68]/30 shadow-md group cursor-pointer relative"
+              >
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=1200&q=80"
+                  alt="Kids Casual & Comfort"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#171916]/80 via-transparent to-transparent p-7 flex flex-col justify-end text-[#F3F0E8]">
+                  <span className="text-[10px] tracking-[0.25em] uppercase text-[#B49A68] font-sans font-medium mb-1">
+                    {language === 'hi' ? 'रोज़मर्रा का आराम' : 'EVERYDAY COMFORT'}
+                  </span>
+                  <h3 className="font-serif text-2xl font-normal">
+                    {language === 'hi' ? 'सॉफ्ट कॉटन टीज़ और शॉर्ट्स' : 'Soft Cottons & Playful Casuals'}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Card 2: Kids Festive & Party Tuxedo (7 cols) */}
+              <div
+                data-cursor="view"
+                onClick={() => {
+                  setActiveFilter('kids');
+                  setSelectedLookbookItem(LOOKBOOK_ITEMS[5]);
+                }}
+                className="lg:col-span-7 aspect-[16/11] rounded overflow-hidden bg-[#DED6C8] border border-[#B49A68]/30 shadow-lg group cursor-pointer relative"
+              >
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=1400&q=80"
+                  alt="Boys Celebration Tuxedos and Kurtas"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#171916]/85 via-transparent to-transparent p-8 flex flex-col justify-end text-[#F3F0E8]">
+                  <span className="text-[10px] tracking-[0.25em] uppercase text-[#B49A68] font-sans font-medium mb-1">
+                    {language === 'hi' ? 'त्योहार और पार्टी' : 'FESTIVE & CELEBRATION'}
+                  </span>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-normal mb-2">
+                    {language === 'hi' ? 'नन्हे राजकुमारों के लिए सूट और कुर्ते' : 'Junior Gentleman Suits & Kurta-Dhoti'}
+                  </h3>
+                  <p className="text-xs text-[#DED6C8]/80 font-light font-sans max-w-md">
+                    {language === 'hi'
+                      ? 'पारिवारिक शादियों और जन्मदिन के लिए तैयार थ्री-पीस सूट और मुलायम ब्रोकेड कुर्ते।'
+                      : 'Three-piece tailored suits, waistcoats and festive kurta-dhoti sets crafted with skin-gentle linings.'}
                   </p>
                 </div>
               </div>
@@ -574,49 +622,61 @@ export default function App() {
           </div>
         </section>
 
-        {/* ================= LOOKBOOK GALLERY ================= */}
-        <section id="gallery" className="py-24 sm:py-32 px-6 sm:px-12 bg-[#151515] border-b border-[#f4efe6]/10">
-          <div className="max-w-[1440px] mx-auto">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        {/* ================= SECTION 05 — LATEST LOOKS / GALLERY ================= */}
+        {/* Background: Soft Sand #DED6C8 */}
+        <section id="gallery" className="py-24 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#DED6C8] text-[#171916] border-b border-[#B49A68]/20">
+          <div className="max-w-[1400px] mx-auto">
+            {/* Header & Filter Bar */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
               <div>
-                <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-[#c8a44d] mb-4 font-medium">
-                  <span className="w-7 h-[1px] bg-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'नवीनतम लुक' : 'Lookbook'}</span>
+                <span className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#263D32] mb-3 font-semibold font-sans">
+                  <span className="w-7 h-[1px] bg-[#263D32]" />
+                  <span>{language === 'hi' ? 'एडिटोरियल गैलरी' : 'CURATED LOOKBOOK'}</span>
                 </span>
-                <h2 className="font-serif text-3xl sm:text-5xl text-[#f4efe6] font-normal leading-tight">
+                <h2 className="font-serif text-4xl sm:text-6xl text-[#171916] font-normal leading-tight tracking-tight">
                   {language === 'hi' ? (
                     <>
-                      स्टोर में, <em className="italic text-[#c8a44d]">ट्रेंड में।</em>
+                      एक <span className="italic text-[#263D32]">नज़दीकी नज़र।</span>
                     </>
                   ) : (
                     <>
-                      In-store, <em className="italic text-[#c8a44d]">on-trend.</em>
+                      A closer <span className="italic text-[#263D32]">look.</span>
                     </>
                   )}
                 </h2>
               </div>
 
-              {/* Segmented Filter Controls */}
-              <div className="flex flex-wrap items-center gap-1.5 p-1 bg-[#1f1f1f] rounded-lg border border-[#f4efe6]/10 text-xs font-sans">
+              {/* Functional Segmented Filter Controls */}
+              <div className="flex flex-wrap items-center gap-1.5 p-1 bg-[#F3F0E8] rounded border border-[#B49A68]/30 text-xs font-sans">
                 <button
                   type="button"
                   onClick={() => setActiveFilter('all')}
-                  className={`px-3.5 py-1.5 rounded-md transition-all whitespace-nowrap shrink-0 ${
+                  className={`px-3.5 py-1.5 rounded transition-all whitespace-nowrap font-medium ${
                     activeFilter === 'all'
-                      ? 'bg-[#c8a44d] text-[#0d0d0d] font-semibold shadow-sm'
-                      : 'text-[#c9c3b7] hover:text-[#f4efe6]'
+                      ? 'bg-[#171916] text-[#F3F0E8] shadow-sm'
+                      : 'text-[#88867F] hover:text-[#171916]'
                   }`}
                 >
                   {language === 'hi' ? 'सभी' : 'All Looks'}
                 </button>
                 <button
                   type="button"
+                  onClick={() => setActiveFilter('casual')}
+                  className={`px-3.5 py-1.5 rounded transition-all whitespace-nowrap font-medium ${
+                    activeFilter === 'casual'
+                      ? 'bg-[#171916] text-[#F3F0E8] shadow-sm'
+                      : 'text-[#88867F] hover:text-[#171916]'
+                  }`}
+                >
+                  {language === 'hi' ? 'कैज़ुअल' : 'Everyday Casual'}
+                </button>
+                <button
+                  type="button"
                   onClick={() => setActiveFilter('ethnic')}
-                  className={`px-3.5 py-1.5 rounded-md transition-all whitespace-nowrap shrink-0 ${
+                  className={`px-3.5 py-1.5 rounded transition-all whitespace-nowrap font-medium ${
                     activeFilter === 'ethnic'
-                      ? 'bg-[#c8a44d] text-[#0d0d0d] font-semibold shadow-sm'
-                      : 'text-[#c9c3b7] hover:text-[#f4efe6]'
+                      ? 'bg-[#171916] text-[#F3F0E8] shadow-sm'
+                      : 'text-[#88867F] hover:text-[#171916]'
                   }`}
                 >
                   {language === 'hi' ? 'एथनिक' : 'Ethnicwear'}
@@ -624,72 +684,64 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setActiveFilter('kids')}
-                  className={`px-3.5 py-1.5 rounded-md transition-all whitespace-nowrap shrink-0 ${
+                  className={`px-3.5 py-1.5 rounded transition-all whitespace-nowrap font-medium ${
                     activeFilter === 'kids'
-                      ? 'bg-[#c8a44d] text-[#0d0d0d] font-semibold shadow-sm'
-                      : 'text-[#c9c3b7] hover:text-[#f4efe6]'
+                      ? 'bg-[#171916] text-[#F3F0E8] shadow-sm'
+                      : 'text-[#88867F] hover:text-[#171916]'
                   }`}
                 >
-                  {language === 'hi' ? 'बच्चे' : 'Kids Collection'}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveFilter('casual')}
-                  className={`px-3.5 py-1.5 rounded-md transition-all whitespace-nowrap shrink-0 ${
-                    activeFilter === 'casual'
-                      ? 'bg-[#c8a44d] text-[#0d0d0d] font-semibold shadow-sm'
-                      : 'text-[#c9c3b7] hover:text-[#f4efe6]'
-                  }`}
-                >
-                  {language === 'hi' ? 'कैज़ुअल' : 'Casual & Denim'}
+                  {language === 'hi' ? 'बच्चे' : 'Kidswear'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveFilter('wedding')}
-                  className={`px-3.5 py-1.5 rounded-md transition-all whitespace-nowrap shrink-0 ${
+                  className={`px-3.5 py-1.5 rounded transition-all whitespace-nowrap font-medium ${
                     activeFilter === 'wedding'
-                      ? 'bg-[#c8a44d] text-[#0d0d0d] font-semibold shadow-sm'
-                      : 'text-[#c9c3b7] hover:text-[#f4efe6]'
+                      ? 'bg-[#171916] text-[#F3F0E8] shadow-sm'
+                      : 'text-[#88867F] hover:text-[#171916]'
                   }`}
                 >
-                  {language === 'hi' ? 'शेरवानी' : 'Sherwanis'}
+                  {language === 'hi' ? 'शेरवानी' : 'Wedding Sherwanis'}
                 </button>
               </div>
             </div>
 
-            {/* Gallery Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {filteredLookbook.map((item) => (
+            {/* Varied Editorial Grid with intentional asymmetric scales */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredLookbook.map((item, index) => (
                 <div
                   key={item.id}
+                  data-cursor="view"
                   onClick={() => setSelectedLookbookItem(item)}
-                  className="group relative bg-[#1c1c1c] border border-[#f4efe6]/10 rounded overflow-hidden cursor-pointer transition-all duration-300 hover:border-[#c8a44d]"
+                  className={`group relative bg-[#F3F0E8] border border-[#B49A68]/30 rounded overflow-hidden cursor-pointer shadow-md transition-all duration-300 hover:-translate-y-1 ${
+                    index === 0 ? 'sm:col-span-2 sm:row-span-2' : ''
+                  }`}
                 >
-                  <div className="aspect-[4/5] overflow-hidden bg-[#0a0a0a]">
+                  <div className={`overflow-hidden bg-[#171916] ${index === 0 ? 'aspect-square sm:aspect-[4/3]' : 'aspect-[4/5]'}`}>
                     <ImageWithFallback
                       src={item.imageUrl}
                       alt={language === 'hi' ? item.titleHi : item.titleEn}
                       fallbackTitle={language === 'hi' ? item.titleHi : item.titleEn}
                       fallbackCategory={language === 'hi' ? item.categoryHi : item.categoryEn}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-[0.88] group-hover:brightness-100"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95"
                     />
                   </div>
 
-                  {/* Overlay Vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/95 via-transparent to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+                  {/* Scrim Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#171916]/95 via-transparent to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
 
                   {/* Caption */}
-                  <div className="absolute inset-x-0 bottom-0 p-5">
-                    <span className="text-[10px] tracking-[0.25em] uppercase text-[#c8a44d] font-sans font-medium block mb-1">
+                  <div className="absolute inset-x-0 bottom-0 p-6 text-[#F3F0E8]">
+                    <span className="text-[10px] tracking-[0.25em] uppercase text-[#B49A68] font-sans font-medium block mb-1">
                       {language === 'hi' ? item.categoryHi : item.categoryEn}
                     </span>
-                    <h4 className="font-serif text-lg text-[#f4efe6] font-normal leading-snug line-clamp-1 group-hover:text-[#e0c483] transition-colors">
+                    <h4 className="font-serif text-xl sm:text-2xl text-[#F3F0E8] font-normal leading-snug line-clamp-1">
                       {language === 'hi' ? item.titleHi : item.titleEn}
                     </h4>
-                    <div className="mt-2 text-[11px] text-[#c9c3b7]/70 flex items-center justify-between font-sans">
+                    <div className="mt-2 text-xs text-[#DED6C8]/80 flex items-center justify-between font-sans">
                       <span>{language === 'hi' ? item.tagHi : item.tagEn}</span>
-                      <span className="text-[#c8a44d] group-hover:translate-x-1 transition-transform">
-                        {language === 'hi' ? 'विस्तार देखें →' : 'View Look →'}
+                      <span className="text-[#B49A68] group-hover:translate-x-1 transition-transform">
+                        {language === 'hi' ? 'विवरण देखें →' : 'View Look →'}
                       </span>
                     </div>
                   </div>
@@ -699,135 +751,120 @@ export default function App() {
           </div>
         </section>
 
-        {/* ================= INSTAGRAM SECTION ================= */}
-        <section id="instagram" className="py-24 sm:py-32 px-6 sm:px-12 border-b border-[#f4efe6]/10">
-          <div className="max-w-[1440px] mx-auto">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-              <div>
-                <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-[#c8a44d] mb-4 font-medium">
-                  <span className="w-7 h-[1px] bg-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'सोशल फीड' : 'Community & Social'}</span>
-                </span>
-                <h2 className="font-serif text-3xl sm:text-5xl text-[#f4efe6] font-normal leading-tight">
-                  {language === 'hi' ? (
-                    <>
-                      इंस्टाग्राम पर <em className="italic text-[#c8a44d]">@aboutus_jabalpur</em>
-                    </>
-                  ) : (
-                    <>
-                      Follow on Instagram <em className="italic text-[#c8a44d]">@aboutus_jabalpur</em>
-                    </>
-                  )}
-                </h2>
-              </div>
-              <a
-                href="https://instagram.com/aboutus_jabalpur"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-[#f4efe6]/25 hover:border-[#c8a44d] text-[#c9c3b7] hover:text-[#f4efe6] px-5 py-2.5 rounded-full text-xs font-sans uppercase tracking-[0.2em] transition-colors whitespace-nowrap shrink-0"
-              >
-                <Instagram className="w-4 h-4 text-[#c8a44d]" />
-                <span>{language === 'hi' ? 'फॉलो करें' : 'Follow Profile'}</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
+        {/* ================= SECTION 06 — SEASONAL COLLECTION EDIT ================= */}
+        {/* Full Bleed Campaign Banner */}
+        <section className="relative py-28 lg:py-40 px-6 sm:px-12 lg:px-16 overflow-hidden bg-[#171916] border-b border-[#B49A68]/20">
+          <div className="absolute inset-0 z-0">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=2400&q=80"
+              alt="Seasonal Wedding & Festive Campaign"
+              className="w-full h-full object-cover filter brightness-[0.35] contrast-[1.1] saturate-[0.8]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#171916] via-[#171916]/70 to-[#171916]/50" />
+          </div>
 
-            {/* Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {INSTAGRAM_POSTS.map((post) => (
-                <a
-                  key={post.id}
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative aspect-square rounded overflow-hidden bg-[#151515] border border-[#f4efe6]/10 block"
-                >
-                  <ImageWithFallback
-                    src={post.imageUrl}
-                    alt="Instagram Showroom Post"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
-                  />
-                  <div className="absolute inset-0 bg-[#0d0d0d]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-5 text-[#f4efe6]">
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="text-[#c8a44d] font-sans font-medium">{post.profileHandle}</span>
-                      <Instagram className="w-4 h-4 text-[#c8a44d]" />
-                    </div>
-                    <p className="text-xs font-light line-clamp-3 text-[#c9c3b7]">
-                      {language === 'hi' ? post.captionHi : post.captionEn}
-                    </p>
-                    <span className="text-[10px] uppercase tracking-wider text-[#c8a44d]">
-                      {language === 'hi' ? 'पोस्ट देखें ↗' : 'View Post ↗'}
-                    </span>
-                  </div>
-                </a>
-              ))}
+          <div className="relative z-10 max-w-[1400px] mx-auto">
+            <div className="max-w-xl">
+              <span className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#B49A68] mb-4 font-semibold font-sans">
+                <span className="w-8 h-[1px] bg-[#B49A68]" />
+                <span>{language === 'hi' ? 'मौसमी संग्रह' : 'CURRENT CAMPAIGN'}</span>
+              </span>
+              <h2 className="font-serif text-4xl sm:text-6xl text-[#F3F0E8] font-normal leading-[1.08] tracking-tight mb-6">
+                {language === 'hi' ? (
+                  <>
+                    नया मौसम। <br />
+                    <span className="italic text-[#B49A68]">नई संभावनाएं।</span>
+                  </>
+                ) : (
+                  <>
+                    New season. <br />
+                    <span className="italic text-[#B49A68]">New possibilities.</span>
+                  </>
+                )}
+              </h2>
+              <p className="text-[#DED6C8] text-base font-light leading-relaxed mb-8 font-sans">
+                {language === 'hi'
+                  ? 'आगामी विवाह और उत्सवों के लिए विशेष रूप से चुने गए परिधान अब जबलपुर शोरूम में उपलब्ध हैं। बेस्पोक फिट और उचित दाम।'
+                  : 'Curated fresh arrivals for the festive and wedding season now available in Jabalpur. Refined silhouettes that combine tradition with modern ease.'}
+              </p>
+              <button
+                type="button"
+                onClick={() => setIsEnquiryModalOpen(true)}
+                className="inline-flex items-center gap-2.5 bg-[#F3F0E8] hover:bg-[#DED6C8] text-[#171916] px-7 py-3.5 rounded text-xs font-sans uppercase tracking-[0.2em] font-semibold transition-all duration-200"
+              >
+                <span>{language === 'hi' ? 'अपॉइंटमेंट बुक करें' : 'BOOK AN APPOINTMENT'}</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </section>
 
-        {/* ================= STORY / ABOUT ================= */}
-        <section id="about" className="py-24 sm:py-32 px-6 sm:px-12 bg-[#151515] border-b border-[#f4efe6]/10">
-          <div className="max-w-[1440px] mx-auto">
+        {/* ================= SECTION 07 — ABOUT THE SHOWROOM (DEEP FOREST SECTION) ================= */}
+        {/* Background: Deep Forest #263D32 */}
+        <section id="showroom" className="py-24 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#263D32] text-[#F3F0E8] border-b border-[#B49A68]/20">
+          <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              {/* Visual with Established 2011 Badge */}
-              <div className="lg:col-span-5 relative aspect-[4/5] rounded overflow-hidden bg-[#1c1c1c] border border-[#f4efe6]/10">
+              {/* Authentic Showroom Image */}
+              <div className="lg:col-span-5 relative aspect-[4/5] rounded overflow-hidden bg-[#171916] border border-[#B49A68]/30 shadow-2xl">
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1200&q=80"
-                  alt="Our Showroom Story in Jabalpur"
-                  className="w-full h-full object-cover filter brightness-85"
+                  alt="About Us Showroom Interior in Jabalpur"
+                  className="w-full h-full object-cover filter brightness-90"
                 />
-                <div className="absolute inset-0 border border-[#c8a44d]/30 m-4 pointer-events-none" />
-                <div className="absolute bottom-8 right-8 bg-[#c8a44d] text-[#0d0d0d] p-5 rounded-sm shadow-xl text-center">
-                  <span className="font-serif text-3xl font-bold block leading-none">2011</span>
+                <div className="absolute inset-0 border border-[#B49A68]/30 m-4 pointer-events-none" />
+                <div className="absolute bottom-6 right-6 bg-[#171916]/95 border border-[#B49A68] text-[#F3F0E8] p-4 rounded text-center">
+                  <span className="font-serif text-3xl font-normal block leading-none text-[#B49A68]">2011</span>
                   <span className="text-[9px] uppercase tracking-[0.25em] font-sans font-medium block mt-1">
-                    {language === 'hi' ? 'स्थापना वर्ष' : 'Established'}
+                    {language === 'hi' ? 'स्थापना वर्ष' : 'ESTABLISHED'}
                   </span>
                 </div>
               </div>
 
-              {/* Text Narrative */}
+              {/* Editorial Copy: Local Trust & Identity */}
               <div className="lg:col-span-7">
-                <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-[#c8a44d] mb-4 font-medium">
-                  <span className="w-7 h-[1px] bg-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'हमारी कहानी' : 'Our Story'}</span>
-                </span>
-                <h2 className="font-serif text-3xl sm:text-5xl text-[#f4efe6] font-normal leading-tight mb-8">
+                <div className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#B49A68] mb-4 font-semibold font-sans">
+                  <span className="w-8 h-[1px] bg-[#B49A68]" />
+                  <span>{language === 'hi' ? 'हमारा शोरूम' : 'OUR HERITAGE'}</span>
+                </div>
+
+                <h2 className="font-serif text-4xl sm:text-6xl text-[#F3F0E8] font-normal leading-[1.08] tracking-tight mb-8">
                   {language === 'hi' ? (
                     <>
-                      एक स्टोर से बढ़कर — <em className="italic text-[#c8a44d]">जबलपुर की परंपरा।</em>
+                      जबलपुर का अपना नाम। <br />
+                      <span className="italic text-[#B49A68]">आपकी अपनी पहचान।</span>
                     </>
                   ) : (
                     <>
-                      More than a store — <em className="italic text-[#c8a44d]">a Jabalpur ritual.</em>
+                      A local name. <br />
+                      <span className="italic text-[#B49A68]">A style of your own.</span>
                     </>
                   )}
                 </h2>
 
-                <div className="space-y-5 text-[#c9c3b7] text-base font-light leading-relaxed max-w-2xl mb-12">
+                <div className="space-y-5 text-[#DED6C8] text-base font-light leading-relaxed max-w-xl mb-10 font-sans">
                   <p>
                     {language === 'hi'
-                      ? '2011 से, About Us — The Men\'s & Kids Store जबलपुर के पुरुषों और बच्चों को उनके खास मौकों के लिए तैयार कर रहा है। एक युवा की पहली इंटरव्यू शर्ट से लेकर एक बच्चे के पहले दिवाली कुर्ते तक, और उसकी ज़िंदगी के सबसे बड़े दिन की शेरवानी तक — हम इस कहानी का हिस्सा रहे हैं।'
-                      : 'Since 2011, About Us — The Men’s & Kids Store has been dressing the men and children of Jabalpur for the moments that truly matter. From a young man\'s first interview shirt, to a child\'s first Diwali kurta, to the sherwani worn on the biggest day of his life — we have been an honoured part of the city\'s celebrations.'}
+                      ? 'अबाउट अस — द मेन्स एंड किड्स स्टोर 2011 से जबलपुर के परिवारों को उनके खास पलों के लिए तैयार कर रहा है। एक युवा की पहली इंटरव्यू शर्ट से लेकर विवाह की भव्य शेरवानी और नन्हे बच्चों के पहले उत्सव तक — हम इस शहर की खुशियों के साक्षी रहे हैं।'
+                      : 'About Us brings together men’s fashion, kidswear, and occasion-ready clothing for shoppers in Jabalpur. Established in 2011, our showroom combines current silhouettes, authentic textile craft, and honest prices under one roof at Marhatal.'}
                   </p>
                   <p>
                     {language === 'hi'
-                      ? 'हमारा वादा सरल है: आधुनिक ट्रेंड्स, ईमानदार गुणवत्ता, और वाजिब दाम — सब कुछ मरहटल में एक ही छत के नीचे।'
-                      : 'Our promise remains honest and simple: current silhouettes, authentic fabric quality, and transparent pricing — all under one welcoming roof at Marhatal.'}
+                      ? 'हमारा उद्देश्य अंतरराष्ट्रीय ब्रांड का दिखावा करना नहीं, बल्कि जबलपुर के समझदार ग्राहकों को उत्तम गुणवत्ता और सहज स्टाइल उपलब्ध कराना है।'
+                      : 'We communicate local familiarity and lasting trust rather than pretending to be an inaccessible runway label. Real fashion for real moments.'}
                   </p>
                 </div>
 
-                {/* Quantitative Metric Proof */}
-                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-[#f4efe6]/10">
+                {/* Trust Proof Metrics */}
+                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-[#F3F0E8]/15 font-sans">
                   {STORE_FEATURES.map((feat) => (
                     <div key={feat.number}>
-                      <span className="font-serif text-3xl sm:text-4xl text-[#c8a44d] block font-normal leading-none mb-2">
+                      <span className="font-serif text-3xl sm:text-4xl text-[#B49A68] block font-normal leading-none mb-1">
                         {feat.number}
                       </span>
-                      <span className="text-[11px] uppercase tracking-[0.2em] text-[#f4efe6] font-sans font-medium block mb-1">
+                      <span className="text-[11px] uppercase tracking-[0.18em] text-[#F3F0E8] font-medium block mb-1">
                         {language === 'hi' ? feat.titleHi : feat.titleEn}
                       </span>
-                      <p className="text-xs text-[#c9c3b7]/70 font-light hidden sm:block">
+                      <p className="text-xs text-[#DED6C8]/70 font-light hidden sm:block">
                         {language === 'hi' ? feat.descHi : feat.descEn}
                       </p>
                     </div>
@@ -838,80 +875,86 @@ export default function App() {
           </div>
         </section>
 
-        {/* ================= VISIT US / SHOWROOM & MAP ================= */}
-        <section id="visit" className="py-24 sm:py-32 px-6 sm:px-12 border-b border-[#f4efe6]/10">
-          <div className="max-w-[1440px] mx-auto">
+        {/* ================= SECTION 08 — VISIT THE SHOWROOM (LIGHT SECTION) ================= */}
+        {/* Background: Warm Ivory #F3F0E8 */}
+        <section id="visit" className="py-24 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#F3F0E8] text-[#171916] border-b border-[#B49A68]/20">
+          <div className="max-w-[1400px] mx-auto">
             {/* Header */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mb-16">
-              <div>
-                <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-[#c8a44d] mb-4 font-medium">
-                  <span className="w-7 h-[1px] bg-[#c8a44d]" />
-                  <span>{language === 'hi' ? 'पधारें' : 'Showroom Visit'}</span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16">
+              <div className="lg:col-span-8">
+                <span className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#263D32] mb-3 font-semibold font-sans">
+                  <span className="w-7 h-[1px] bg-[#263D32]" />
+                  <span>{language === 'hi' ? 'शोरूम विज़िट' : 'FIND US IN JABALPUR'}</span>
                 </span>
-                <h2 className="font-serif text-3xl sm:text-5xl text-[#f4efe6] font-normal leading-tight">
+                <h2 className="font-serif text-4xl sm:text-6xl text-[#171916] font-normal leading-tight tracking-tight">
                   {language === 'hi' ? (
                     <>
-                      आकर देखें <em className="italic text-[#c8a44d]">व्यक्तिगत रूप से।</em>
+                      आपका अगला लुक <br />
+                      <span className="italic text-[#263D32]">यहीं से शुरू होता है।</span>
                     </>
                   ) : (
                     <>
-                      Come experience it <em className="italic text-[#c8a44d]">in person.</em>
+                      Your next look <br />
+                      <span className="italic text-[#263D32]">starts here.</span>
                     </>
                   )}
                 </h2>
               </div>
-              <p className="text-[#c9c3b7] text-sm sm:text-base font-light max-w-md md:ml-auto">
-                {language === 'hi'
-                  ? 'तस्वीरें ही सब कुछ नहीं कहतीं। अंदर आइए, कपड़ा महसूस करें, और हमें सही लुक चुनने दें।'
-                  : 'Photographs only say so much. Step in, feel the weave of raw silk and linen, and let our stylists dress you.'}
-              </p>
+              <div className="lg:col-span-4">
+                <p className="text-[#292B27] text-sm sm:text-base font-light leading-relaxed font-sans">
+                  {language === 'hi'
+                    ? 'शोरूम में पधारें, कपड़ा महसूस करें और हमारे स्टाइलिस्ट्स की मदद से सही फिटिंग का चयन करें।'
+                    : 'Step in during store hours or message us on WhatsApp. Feel the natural textures and let our staff assist you.'}
+                </p>
+              </div>
             </div>
 
+            {/* Editorial 2-Column Location Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-              {/* Information Column */}
-              <div className="lg:col-span-5 flex flex-col justify-between bg-[#151515] p-8 sm:p-10 rounded border border-[#f4efe6]/10">
+              {/* Left Column: Verified Location & Contacts */}
+              <div className="lg:col-span-5 bg-[#DED6C8] p-8 sm:p-10 rounded border border-[#B49A68]/30 flex flex-col justify-between">
                 <div className="space-y-6">
                   {/* Address */}
-                  <div className="flex gap-4 items-start pb-6 border-b border-[#f4efe6]/10">
-                    <div className="w-10 h-10 rounded-full bg-[#0d0d0d] border border-[#c8a44d]/30 flex items-center justify-center text-[#c8a44d] shrink-0 mt-0.5">
-                      <MapPin className="w-5 h-5" />
+                  <div className="flex gap-4 items-start pb-6 border-b border-[#171916]/10">
+                    <div className="w-10 h-10 rounded bg-[#263D32] text-[#F3F0E8] flex items-center justify-center shrink-0 mt-0.5">
+                      <MapPin className="w-5 h-5 text-[#B49A68]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-[0.25em] text-[#c8a44d] block mb-1 font-medium font-sans">
-                        {language === 'hi' ? 'पता' : 'Address'}
+                      <span className="text-[10px] uppercase tracking-[0.25em] text-[#263D32] block mb-1 font-semibold font-sans">
+                        {language === 'hi' ? 'पता' : 'ADDRESS'}
                       </span>
-                      <p className="text-sm sm:text-base text-[#f4efe6] font-light leading-relaxed">
+                      <p className="text-sm sm:text-base text-[#171916] font-normal leading-relaxed">
                         {language === 'hi' ? STORE_ADDRESS_HI : STORE_ADDRESS_EN}
                       </p>
-                      <span className="text-xs text-[#c9c3b7]/70 mt-1 block">
-                        {language === 'hi' ? 'लैंडमार्क: गुरुद्वारा के पास' : 'Landmark: Beside Gurudwara, Teen Patti Road'}
+                      <span className="text-xs text-[#88867F] mt-1 block">
+                        {language === 'hi' ? 'लैंडमार्क: गुरुद्वारा के पास, टीन पट्टी रोड' : 'Landmark: Beside Gurudwara, Teen Patti Road'}
                       </span>
                     </div>
                   </div>
 
                   {/* Phone */}
-                  <div className="flex gap-4 items-start pb-6 border-b border-[#f4efe6]/10">
-                    <div className="w-10 h-10 rounded-full bg-[#0d0d0d] border border-[#c8a44d]/30 flex items-center justify-center text-[#c8a44d] shrink-0 mt-0.5">
-                      <Phone className="w-5 h-5" />
+                  <div className="flex gap-4 items-start pb-6 border-b border-[#171916]/10">
+                    <div className="w-10 h-10 rounded bg-[#263D32] text-[#F3F0E8] flex items-center justify-center shrink-0 mt-0.5">
+                      <Phone className="w-5 h-5 text-[#B49A68]" />
                     </div>
                     <div className="flex-1">
-                      <span className="text-[10px] uppercase tracking-[0.25em] text-[#c8a44d] block mb-1 font-medium font-sans">
-                        {language === 'hi' ? 'फोन व व्हाट्सएप' : 'Phone & Enquiries'}
+                      <span className="text-[10px] uppercase tracking-[0.25em] text-[#263D32] block mb-1 font-semibold font-sans">
+                        {language === 'hi' ? 'संपर्क' : 'PHONE & WHATSAPP'}
                       </span>
                       <div className="flex items-center gap-3">
                         <a
                           href={`tel:${STORE_PHONE}`}
-                          className="text-base sm:text-lg text-[#f4efe6] hover:text-[#c8a44d] font-sans font-medium transition-colors"
+                          className="text-base sm:text-lg text-[#171916] hover:text-[#263D32] font-semibold transition-colors"
                         >
                           {STORE_PHONE_DISPLAY}
                         </a>
                         <button
                           type="button"
                           onClick={handleCopyPhone}
-                          className="p-1.5 text-[#c9c3b7] hover:text-[#f4efe6] transition-colors"
-                          title="Copy phone number"
+                          className="p-1.5 text-[#88867F] hover:text-[#171916] transition-colors"
+                          title="Copy phone"
                         >
-                          {copiedPhone ? <Check className="w-4 h-4 text-[#c8a44d]" /> : <Copy className="w-4 h-4" />}
+                          {copiedPhone ? <Check className="w-4 h-4 text-[#263D32]" /> : <Copy className="w-4 h-4" />}
                         </button>
                       </div>
                     </div>
@@ -919,27 +962,27 @@ export default function App() {
 
                   {/* Hours */}
                   <div className="flex gap-4 items-start">
-                    <div className="w-10 h-10 rounded-full bg-[#0d0d0d] border border-[#c8a44d]/30 flex items-center justify-center text-[#c8a44d] shrink-0 mt-0.5">
-                      <Clock className="w-5 h-5" />
+                    <div className="w-10 h-10 rounded bg-[#263D32] text-[#F3F0E8] flex items-center justify-center shrink-0 mt-0.5">
+                      <Clock className="w-5 h-5 text-[#B49A68]" />
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-[0.25em] text-[#c8a44d] block mb-1 font-medium font-sans">
-                        {language === 'hi' ? 'शोरूम समय' : 'Showroom Hours'}
+                      <span className="text-[10px] uppercase tracking-[0.25em] text-[#263D32] block mb-1 font-semibold font-sans">
+                        {language === 'hi' ? 'शोरूम समय' : 'HOURS'}
                       </span>
-                      <p className="text-sm sm:text-base text-[#f4efe6] font-light">
+                      <p className="text-sm sm:text-base text-[#171916] font-normal">
                         {language === 'hi' ? STORE_HOURS_HI : STORE_HOURS_EN}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Actions */}
-                <div className="pt-8 mt-6 border-t border-[#f4efe6]/10 flex flex-wrap gap-3">
+                {/* Quick In-Store Trial Action */}
+                <div className="pt-8 mt-6 border-t border-[#171916]/10 flex flex-wrap gap-3">
                   <a
                     href={`tel:${STORE_PHONE}`}
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#f4efe6] hover:bg-[#c8a44d] text-[#0d0d0d] py-3 px-5 rounded-full text-xs font-sans uppercase tracking-[0.18em] font-semibold transition-all duration-300"
+                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#171916] hover:bg-[#292B27] text-[#F3F0E8] py-3 px-5 rounded text-xs font-sans uppercase tracking-[0.18em] font-semibold transition-all duration-200"
                   >
-                    <Phone className="w-3.5 h-3.5" />
+                    <Phone className="w-3.5 h-3.5 text-[#B49A68]" />
                     <span>{language === 'hi' ? 'कॉल करें' : 'Call Store'}</span>
                   </a>
 
@@ -947,64 +990,66 @@ export default function App() {
                     href={STORE_WHATSAPP_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-[#0d0d0d] py-3 px-5 rounded-full text-xs font-sans uppercase tracking-[0.18em] font-semibold transition-all duration-300"
+                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#263D32] hover:bg-[#2e4a3d] text-[#F3F0E8] py-3 px-5 rounded text-xs font-sans uppercase tracking-[0.18em] font-semibold transition-all duration-200"
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
+                    <MessageCircle className="w-3.5 h-3.5 text-[#B49A68]" />
                     <span>{language === 'hi' ? 'व्हाट्सएप' : 'WhatsApp'}</span>
                   </a>
 
                   <button
                     type="button"
                     onClick={() => setIsEnquiryModalOpen(true)}
-                    className="w-full inline-flex items-center justify-center gap-2 border border-[#f4efe6]/25 hover:border-[#c8a44d] text-[#c9c3b7] hover:text-[#f4efe6] py-3 px-5 rounded-full text-xs font-sans uppercase tracking-[0.18em] transition-colors"
+                    className="w-full inline-flex items-center justify-center gap-2 border border-[#263D32] text-[#263D32] hover:bg-[#263D32] hover:text-[#F3F0E8] py-3 px-5 rounded text-xs font-sans uppercase tracking-[0.18em] font-semibold transition-all duration-200"
                   >
-                    <Calendar className="w-3.5 h-3.5 text-[#c8a44d]" />
-                    <span>{language === 'hi' ? 'व्यक्तिगत ट्रायल अपॉइंटमेंट लें' : 'Schedule VIP Consultation'}</span>
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>{language === 'hi' ? 'ट्रायल अपॉइंटमेंट आरक्षित करें' : 'Reserve Trial Fitting'}</span>
                   </button>
                 </div>
               </div>
 
-              {/* Map Embed Column */}
-              <div className="lg:col-span-7 min-h-[380px] lg:min-h-full rounded overflow-hidden border border-[#f4efe6]/10 relative bg-[#1c1c1c]">
+              {/* Right Column: Google Maps Embed with Clean Framing */}
+              <div className="lg:col-span-7 min-h-[380px] rounded overflow-hidden border border-[#B49A68]/30 relative bg-[#DED6C8]">
                 <iframe
                   title="About Us Showroom Location — Marhatal, Jabalpur"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full min-h-[380px] filter invert-[90%] hue-rotate-180 contrast-[105%]"
+                  className="w-full h-full min-h-[380px] filter saturate-[0.85] contrast-[1.05]"
                   src="https://www.google.com/maps?q=Marhatal%2C%20Jabalpur%2C%20Madhya%20Pradesh&output=embed"
                 />
-                <div className="absolute top-4 left-4 z-10 bg-[#0d0d0d]/85 backdrop-blur-md px-4 py-2 border border-[#f4efe6]/20 rounded text-xs text-[#f4efe6]">
-                  <span className="text-[#c8a44d] font-semibold">About Us</span> · Marhatal, Jabalpur
+                <div className="absolute top-4 left-4 bg-[#171916]/90 backdrop-blur-sm px-4 py-2 border border-[#B49A68]/30 rounded text-xs text-[#F3F0E8]">
+                  <span className="text-[#B49A68] font-semibold">About Us</span> · Marhatal, Jabalpur
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ================= CTA BANNER ================= */}
-        <section className="py-24 sm:py-32 px-6 sm:px-12 bg-gradient-to-br from-[#1a1512] via-[#121212] to-[#0d0d0d] text-center border-b border-[#f4efe6]/10 relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#c8a44d]/10 blur-[120px] pointer-events-none rounded-full" />
+        {/* ================= SECTION 09 — FINAL CAMPAIGN (DARK SECTION) ================= */}
+        {/* Background: Ink Black #171916 */}
+        <section className="py-24 lg:py-36 px-6 sm:px-12 lg:px-16 bg-[#171916] text-[#F3F0E8] text-center border-b border-[#B49A68]/20 relative overflow-hidden">
           <div className="max-w-3xl mx-auto relative z-10">
-            <span className="inline-flex items-center gap-3 text-xs tracking-[0.4em] uppercase text-[#c8a44d] mb-6 font-medium">
-              <span className="w-7 h-[1px] bg-[#c8a44d]" />
-              <span>{language === 'hi' ? 'आपका स्वागत है' : 'Welcome to About Us'}</span>
-              <span className="w-7 h-[1px] bg-[#c8a44d]" />
+            <span className="inline-flex items-center gap-3 text-xs tracking-[0.35em] uppercase text-[#B49A68] mb-6 font-semibold font-sans">
+              <span className="w-8 h-[1px] bg-[#B49A68]" />
+              <span>{language === 'hi' ? 'स्वागत है' : 'ABOUT US · JABALPUR'}</span>
+              <span className="w-8 h-[1px] bg-[#B49A68]" />
             </span>
-            <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#f4efe6] font-normal leading-tight mb-6">
+
+            <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl text-[#F3F0E8] font-normal leading-[1.08] tracking-tight mb-6">
               {language === 'hi' ? (
                 <>
-                  अपना <em className="italic text-[#c8a44d]">अगला पसंदीदा परिधान</em> खोजने के लिए तैयार?
+                  आइए, अपना <span className="italic text-[#B49A68]">लुक तलाशिए।</span>
                 </>
               ) : (
                 <>
-                  Ready to discover your <em className="italic text-[#c8a44d]">next favourite outfit?</em>
+                  Come find <span className="italic text-[#B49A68]">your look.</span>
                 </>
               )}
             </h2>
-            <p className="text-[#c9c3b7] text-base font-light max-w-xl mx-auto mb-10 leading-relaxed">
+
+            <p className="text-[#DED6C8] text-base font-light max-w-lg mx-auto mb-10 leading-relaxed font-sans">
               {language === 'hi'
-                ? 'व्हाट्सएप पर संदेश भेजें, या मरहटल शोरूम पधारें — हम आपकी संपूर्ण पसंद और सही फिटिंग ढूंढने में मदद करेंगे।'
-                : 'Send us a query on WhatsApp, or drop by our showroom at Marhatal — we look forward to dressing you.'}
+                ? 'अबाउट अस, जबलपुर में नए कलेक्शन का अन्वेषण करें। रोज़मर्रा के स्टाइल से लेकर विवाह के सबसे बड़े दिन तक।'
+                : 'Explore the collections at About Us, Jabalpur. From relaxed weekend linen to celebratory wedding sherwanis.'}
             </p>
 
             <div className="flex flex-wrap justify-center items-center gap-4">
@@ -1012,42 +1057,42 @@ export default function App() {
                 href={STORE_WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-[#f4efe6] hover:bg-[#c8a44d] text-[#0d0d0d] px-8 py-3.5 rounded-full text-xs font-sans uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-xl hover:-translate-y-0.5"
+                className="inline-flex items-center gap-3 bg-[#F3F0E8] hover:bg-[#DED6C8] text-[#171916] px-8 py-3.5 rounded text-xs font-sans uppercase tracking-[0.2em] font-semibold transition-all duration-200 group"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span>{language === 'hi' ? 'व्हाट्सएप पर पूछें' : 'Enquire on WhatsApp'}</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <span>{language === 'hi' ? 'व्हाट्सएप पर पूछें' : 'VISIT ABOUT US'}</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
 
               <a
                 href="https://maps.google.com/?q=Marhatal+Jabalpur"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 border border-[#f4efe6]/35 hover:border-[#c8a44d] text-[#f4efe6] px-8 py-3.5 rounded-full text-xs font-sans uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2.5 border border-[#B49A68]/50 hover:border-[#B49A68] text-[#F3F0E8] px-8 py-3.5 rounded text-xs font-sans uppercase tracking-[0.2em] font-medium transition-all duration-200"
               >
-                <MapPin className="w-4 h-4 text-[#c8a44d]" />
-                <span>{language === 'hi' ? 'गूगल मैप्स नेविगेशन' : 'Get Directions'}</span>
+                <MapPin className="w-4 h-4 text-[#B49A68]" />
+                <span>{language === 'hi' ? 'गूगल मैप्स नेविगेशन' : 'GET DIRECTIONS'}</span>
               </a>
             </div>
           </div>
         </section>
       </main>
 
-      {/* ================= FOOTER ================= */}
-      <footer className="bg-[#0a0a0a] pt-20 pb-12 px-6 sm:px-12 text-[#c9c3b7] text-sm">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#f4efe6]/10">
-          {/* Brand Info */}
+      {/* ================= SECTION 10 — FOOTER ================= */}
+      {/* Background: Ink Black #171916 / Warm Charcoal #292B27 */}
+      <footer className="bg-[#171916] pt-20 pb-12 px-6 sm:px-12 lg:px-16 text-[#DED6C8] text-sm">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#F3F0E8]/10">
+          {/* Brand Wordmark & Descriptor */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="flex flex-col tracking-[0.24em] font-serif text-2xl text-[#f4efe6] font-medium leading-tight">
+            <div className="flex flex-col tracking-[0.22em] font-serif text-2xl text-[#F3F0E8] font-normal leading-none">
               <span>ABOUT US</span>
-              <span className="font-sans text-[10px] tracking-[0.35em] text-[#c8a44d] uppercase font-normal">
-                {language === 'hi' ? 'पुरुष और बच्चों का स्टोर' : "The Men's & Kids Store"}
+              <span className="font-sans text-[10px] tracking-[0.38em] text-[#B49A68] uppercase font-medium mt-1">
+                {language === 'hi' ? 'द मेन्स एंड किड्स स्टोर' : "THE MEN'S & KIDS STORE"}
               </span>
             </div>
-            <p className="text-[#c9c3b7] font-light max-w-sm text-sm leading-relaxed">
+            <p className="text-[#DED6C8] font-light max-w-sm text-sm leading-relaxed font-sans">
               {language === 'hi'
-                ? '2011 से जबलपुर का विश्वसनीय पुरुष और बच्चों के फैशन का ठिकाना। उचित दाम, बेहतरीन फैब्रिक।'
-                : 'Jabalpur\'s trusted destination for bespoke menswear and boys celebration wear since 2011.'}
+                ? 'जबलपुर का विश्वसनीय पुरुष और बच्चों के फैशन का ठिकाना। समकालीन कैज़ुअल, उत्सव और शादी की पोशाकें।'
+                : 'Contemporary men’s fashion, kidswear, and occasion-ready dressing in the heart of Jabalpur since 2011.'}
             </p>
             <div className="flex gap-3 pt-2">
               <a
@@ -1055,107 +1100,107 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="w-10 h-10 rounded-full border border-[#f4efe6]/15 hover:border-[#c8a44d] hover:bg-[#c8a44d] hover:text-[#0d0d0d] flex items-center justify-center transition-all"
+                className="w-9 h-9 rounded border border-[#B49A68]/30 hover:border-[#B49A68] hover:bg-[#263D32] flex items-center justify-center transition-all text-[#F3F0E8]"
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4 text-[#B49A68]" />
               </a>
               <a
                 href="https://instagram.com/aboutus_jabalpur"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-10 h-10 rounded-full border border-[#f4efe6]/15 hover:border-[#c8a44d] hover:bg-[#c8a44d] hover:text-[#0d0d0d] flex items-center justify-center transition-all"
+                className="w-9 h-9 rounded border border-[#B49A68]/30 hover:border-[#B49A68] hover:bg-[#263D32] flex items-center justify-center transition-all text-[#F3F0E8]"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-4 h-4 text-[#B49A68]" />
               </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="w-10 h-10 rounded-full border border-[#f4efe6]/15 hover:border-[#c8a44d] hover:bg-[#c8a44d] hover:text-[#0d0d0d] flex items-center justify-center transition-all"
+                className="w-9 h-9 rounded border border-[#B49A68]/30 hover:border-[#B49A68] hover:bg-[#263D32] flex items-center justify-center transition-all text-[#F3F0E8]"
               >
-                <Facebook className="w-4 h-4" />
+                <Facebook className="w-4 h-4 text-[#B49A68]" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Directory */}
           <div className="lg:col-span-2 space-y-3 font-sans text-xs uppercase tracking-[0.2em]">
-            <h4 className="text-[#c8a44d] font-semibold text-[11px] mb-4">
-              {language === 'hi' ? 'संग्रह' : 'Collections'}
+            <h4 className="text-[#B49A68] font-semibold text-[11px] mb-4">
+              {language === 'hi' ? 'कलेक्शन' : 'COLLECTIONS'}
             </h4>
-            <p><a href="#men" className="hover:text-[#f4efe6] transition-colors">{language === 'hi' ? 'पुरुष संग्रह' : "Men's Edit"}</a></p>
-            <p><a href="#kids" className="hover:text-[#f4efe6] transition-colors">{language === 'hi' ? 'बच्चों के कपड़े' : "Kids' Edit"}</a></p>
-            <p><a href="#occasion" className="hover:text-[#f4efe6] transition-colors">{language === 'hi' ? 'अवसर व शादी' : 'Occasionwear'}</a></p>
-            <p><a href="#gallery" className="hover:text-[#f4efe6] transition-colors">{language === 'hi' ? 'लुकबुक गैलरी' : 'Lookbook'}</a></p>
+            <p><a href="#everyday" className="hover:text-[#F3F0E8] transition-colors">{language === 'hi' ? 'एवरीडे स्टाइल' : 'Everyday Style'}</a></p>
+            <p><a href="#occasion" className="hover:text-[#F3F0E8] transition-colors">{language === 'hi' ? 'अवसर व शेरवानी' : 'Occasionwear'}</a></p>
+            <p><a href="#kids" className="hover:text-[#F3F0E8] transition-colors">{language === 'hi' ? 'बच्चों के कपड़े' : 'Kidswear'}</a></p>
+            <p><a href="#gallery" className="hover:text-[#F3F0E8] transition-colors">{language === 'hi' ? 'एडिटोरियल गैलरी' : 'Lookbook'}</a></p>
           </div>
 
-          {/* Store Location */}
-          <div className="lg:col-span-3 space-y-2 text-xs">
-            <h4 className="text-[#c8a44d] uppercase tracking-[0.2em] font-semibold text-[11px] mb-4">
-              {language === 'hi' ? 'शोरूम' : 'Showroom'}
+          {/* Showroom Address */}
+          <div className="lg:col-span-3 space-y-2 text-xs font-sans">
+            <h4 className="text-[#B49A68] uppercase tracking-[0.2em] font-semibold text-[11px] mb-4">
+              {language === 'hi' ? 'शोरूम पता' : 'SHOWROOM'}
             </h4>
-            <p className="text-[#f4efe6] font-light">{STORE_ADDRESS_EN}</p>
-            <p className="text-[#c9c3b7]/70 pt-1">{STORE_HOURS_EN}</p>
+            <p className="text-[#F3F0E8] font-light leading-relaxed">{STORE_ADDRESS_EN}</p>
+            <p className="text-[#88867F] pt-1">{STORE_HOURS_EN}</p>
           </div>
 
-          {/* Contact */}
-          <div className="lg:col-span-2 space-y-2 text-xs">
-            <h4 className="text-[#c8a44d] uppercase tracking-[0.2em] font-semibold text-[11px] mb-4">
-              {language === 'hi' ? 'संपर्क' : 'Connect'}
+          {/* Contacts */}
+          <div className="lg:col-span-2 space-y-2 text-xs font-sans">
+            <h4 className="text-[#B49A68] uppercase tracking-[0.2em] font-semibold text-[11px] mb-4">
+              {language === 'hi' ? 'संपर्क' : 'CONNECT'}
             </h4>
             <p>
-              <a href={`tel:${STORE_PHONE}`} className="hover:text-[#c8a44d] transition-colors font-sans">
+              <a href={`tel:${STORE_PHONE}`} className="hover:text-[#B49A68] transition-colors font-semibold">
                 {STORE_PHONE_DISPLAY}
               </a>
             </p>
             <p>
-              <a href={STORE_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-[#c8a44d] transition-colors">
+              <a href={STORE_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-[#B49A68] transition-colors">
                 WhatsApp Us
               </a>
             </p>
             <p>
-              <a href="https://instagram.com/aboutus_jabalpur" target="_blank" rel="noopener noreferrer" className="hover:text-[#c8a44d] transition-colors">
+              <a href="https://instagram.com/aboutus_jabalpur" target="_blank" rel="noopener noreferrer" className="hover:text-[#B49A68] transition-colors">
                 @aboutus_jabalpur
               </a>
             </p>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="max-w-[1440px] mx-auto pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#c9c3b7]/60 font-sans">
+        {/* Bottom Bar */}
+        <div className="max-w-[1400px] mx-auto pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#88867F] font-sans">
           <span>
-            © {new Date().getFullYear()} About Us — The Men&apos;s &amp; Kids Store, Jabalpur. All rights reserved.
+            © {new Date().getFullYear()} About Us — The Men&apos;s &amp; Kids Store, Jabalpur.
           </span>
-          <span className="text-[#c8a44d]/80">
-            {language === 'hi' ? 'उत्कृष्टता और विश्वास के साथ' : 'Crafted with care · Marhatal, Jabalpur'}
+          <span className="text-[#B49A68]/80">
+            {language === 'hi' ? 'जबलपुर · स्थापना 2011' : 'Jabalpur · Est. 2011'}
           </span>
         </div>
       </footer>
 
-      {/* Floating WhatsApp Action with Ripple Pulse */}
+      {/* Floating WhatsApp Quick Action with restrained Deep Forest / Green tone */}
       <a
         href={STORE_WHATSAPP_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Direct chat on WhatsApp with About Us Showroom"
-        className="wa-pulse fixed bottom-6 right-6 z-[800] w-14 h-14 rounded-full bg-[#25D366] text-[#0d0d0d] flex items-center justify-center transition-transform hover:scale-110 shadow-2xl group"
+        aria-label="Direct WhatsApp Enquiry"
+        className="wa-pulse fixed bottom-6 right-6 z-[800] w-13 h-13 rounded-full bg-[#263D32] border border-[#B49A68]/40 text-[#F3F0E8] flex items-center justify-center transition-transform hover:scale-110 shadow-2xl group"
       >
-        <MessageCircle className="w-7 h-7 text-[#0d0d0d]" />
-        <span className="absolute right-16 bg-[#0d0d0d]/90 text-[#f4efe6] text-[11px] font-sans uppercase tracking-wider px-3 py-1.5 rounded-full border border-[#f4efe6]/15 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-          {language === 'hi' ? 'व्हाट्सएप चैट करें' : 'Chat with Stylist'}
+        <MessageCircle className="w-6 h-6 text-[#B49A68]" />
+        <span className="absolute right-16 bg-[#171916]/95 text-[#F3F0E8] text-[10px] font-sans uppercase tracking-wider px-3 py-1.5 rounded border border-[#B49A68]/30 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+          {language === 'hi' ? 'व्हाट्सएप चैट' : 'Chat on WhatsApp'}
         </span>
       </a>
 
-      {/* Lightbox Lookbook Modal */}
+      {/* Lightbox Modal */}
       <LightboxModal
         item={selectedLookbookItem}
         language={language}
         onClose={() => setSelectedLookbookItem(null)}
       />
 
-      {/* VIP Fitting / Consultation Modal */}
+      {/* Showroom Consultation Modal */}
       <EnquiryModal
         isOpen={isEnquiryModalOpen}
         language={language}

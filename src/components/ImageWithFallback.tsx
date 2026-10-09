@@ -19,17 +19,17 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 
   if (hasError || !src) {
     return (
-      <div className={`relative flex flex-col justify-end p-6 bg-gradient-to-br from-[#1f1b16] via-[#141414] to-[#0a0a0a] border border-[#c8a44d]/20 overflow-hidden ${className}`}>
+      <div className={`relative flex flex-col justify-end p-6 bg-gradient-to-br from-[#171916] via-[#263D32]/25 to-[#171916] border border-[#B49A68]/25 overflow-hidden ${className}`}>
         {/* Subtle decorative geometric lines */}
-        <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#c8a44d_1px,transparent_1px)] [background-size:16px_16px]" />
-        <div className="absolute top-4 right-4 text-[#c8a44d]/40">
-          <Sparkles className="w-5 h-5" />
+        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#B49A68_1px,transparent_1px)] [background-size:20px_20px]" />
+        <div className="absolute top-4 right-4 text-[#B49A68]/50">
+          <Sparkles className="w-4 h-4" />
         </div>
         <div className="relative z-10">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#c8a44d] font-sans font-medium block mb-1">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#B49A68] font-sans font-medium block mb-1">
             {fallbackCategory}
           </span>
-          <h4 className="font-serif text-lg text-[#f4efe6] font-normal tracking-wide">
+          <h4 className="font-serif text-lg text-[#F3F0E8] font-normal tracking-wide">
             {fallbackTitle}
           </h4>
         </div>

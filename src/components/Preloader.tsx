@@ -7,61 +7,78 @@ interface PreloaderProps {
 }
 
 export const Preloader: React.FC<PreloaderProps> = ({ language, onFinish }) => {
-  const [progress, setProgress] = useState(0);
-  const [isDone, setIsDone] = useState(false);
+  const [phase, setPhase] = useState<'enter' | 'reveal' | 'exit' | 'done'>('enter');
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + Math.floor(Math.random() * 22) + 10;
-        if (next >= 100) {
-          clearInterval(timer);
-          setTimeout(() => {
-            setIsDone(true);
-            onFinish?.();
-          }, 350);
-          return 100;
-        }
-        return next;
-      });
-    }, 100);
+    // Respect prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setPhase('done');
+      onFinish?.();
+      return;
+    }
 
-    return () => clearInterval(timer);
+    const t1 = setTimeout(() => setPhase('reveal'), 250);
+    const t2 = setTimeout(() => setPhase('exit'), 1300);
+    const t3 = setTimeout(() => {
+      setPhase('done');
+      onFinish?.();
+    }, 1800);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
   }, [onFinish]);
 
-  if (isDone) return null;
+  if (phase === 'done') return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[10000] bg-[#0d0d0d] flex flex-col items-center justify-center transition-opacity duration-700 select-none ${
-        progress >= 100 ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      className={`fixed inset-0 z-[10000] bg-[#171916] flex flex-col items-center justify-center transition-opacity duration-500 ease-out select-none px-6 ${
+        phase === 'exit' ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      <div className="overflow-hidden flex text-3xl sm:text-5xl md:text-6xl font-serif text-[#f4efe6] tracking-[0.28em] font-light">
-        {['A', 'B', 'O', 'U', 'T', '\u00A0', 'U', 'S'].map((char, index) => (
-          <span
-            key={index}
-            className="inline-block animate-[bounce_1s_ease-out] transition-transform duration-700"
-            style={{
-              animationDelay: `${index * 60}ms`,
-            }}
+      <div className="text-center max-w-md">
+        {/* Main Wordmark with masked fade-rise */}
+        <div className="overflow-hidden mb-3">
+          <h1
+            className={`font-serif text-4xl sm:text-6xl text-[#F3F0E8] font-normal tracking-[0.2em] uppercase transition-all duration-700 ease-out ${
+              phase !== 'enter' ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+            }`}
           >
-            {char}
-          </span>
-        ))}
-      </div>
+            ABOUT US
+          </h1>
+        </div>
 
-      {/* Progress Line */}
-      <div className="w-48 sm:w-64 h-[1px] bg-[#f4efe6]/15 mt-8 overflow-hidden relative">
+        {/* Descriptor */}
+        <p
+          className={`font-sans text-[11px] sm:text-xs tracking-[0.38em] uppercase text-[#B49A68] font-medium transition-all duration-500 delay-150 ease-out ${
+            phase !== 'enter' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+          }`}
+        >
+          {language === 'hi' ? 'पुरुष और बच्चों का स्टोर' : "THE MEN'S & KIDS STORE"}
+        </p>
+
+        {/* Thin Antique Brass separator line expanding horizontally */}
+        <div className="my-6 mx-auto h-[1px] bg-[#B49A68]/30 max-w-[220px] overflow-hidden relative">
+          <div
+            className={`h-full bg-[#B49A68] transition-all duration-700 ease-in-out ${
+              phase !== 'enter' ? 'w-full' : 'w-0'
+            }`}
+          />
+        </div>
+
+        {/* Small location & heritage label */}
         <div
-          className="h-full bg-[#c8a44d] transition-all duration-200 ease-linear"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-
-      <div className="mt-4 text-[10px] sm:text-xs tracking-[0.4em] uppercase text-[#c9c3b7] font-sans">
-        {language === 'hi' ? 'स्थापना 2011 · जबलपुर' : 'Est. 2011 · Jabalpur'}
+          className={`text-[10px] tracking-[0.45em] uppercase text-[#DED6C8]/80 font-sans transition-all duration-500 delay-300 ease-out ${
+            phase !== 'enter' ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          {language === 'hi' ? 'जबलपुर · स्थापना 2011' : 'JABALPUR · EST. 2011'}
+        </div>
       </div>
     </div>
   );
 };
+

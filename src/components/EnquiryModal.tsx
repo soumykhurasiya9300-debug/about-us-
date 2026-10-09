@@ -48,17 +48,17 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-[9990] bg-[#0d0d0d]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[9990] bg-[#171916]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
       onClick={onClose}
     >
       <div
-        className="relative max-w-xl w-full bg-[#141414] border border-[#f4efe6]/15 rounded-md p-6 sm:p-8 shadow-2xl text-[#f4efe6]"
+        className="relative max-w-xl w-full bg-[#292B27] border border-[#B49A68]/30 rounded p-6 sm:p-8 shadow-2xl text-[#F3F0E8]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-[#c9c3b7] hover:text-[#f4efe6] p-2 transition-colors"
+          className="absolute top-4 right-4 text-[#DED6C8] hover:text-[#F3F0E8] p-2 transition-colors"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -66,13 +66,13 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
 
         {isSubmitted ? (
           <div className="py-8 text-center space-y-4">
-            <div className="w-14 h-14 mx-auto rounded-full bg-[#c8a44d]/15 border border-[#c8a44d] flex items-center justify-center text-[#c8a44d]">
+            <div className="w-14 h-14 mx-auto rounded-full bg-[#263D32] border border-[#B49A68] flex items-center justify-center text-[#B49A68]">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl text-[#f4efe6]">
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#F3F0E8]">
               {language === 'hi' ? 'ट्रायल अनुरोध प्राप्त हुआ!' : 'Visit Request Scheduled!'}
             </h3>
-            <p className="text-sm text-[#c9c3b7] max-w-md mx-auto font-light">
+            <p className="text-sm text-[#DED6C8] max-w-md mx-auto font-light font-sans">
               {language === 'hi'
                 ? 'हमारा स्टोर प्रतिनिधि आपके नंबर पर पुष्टि के लिए संपर्क करेगा। आप व्हाट्सएप पर भी तुरंत बात कर सकते हैं।'
                 : 'Our showroom stylist will confirm your appointment shortly. You are also redirected to WhatsApp.'}
@@ -84,7 +84,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                   setIsSubmitted(false);
                   onClose();
                 }}
-                className="px-6 py-2.5 rounded-full border border-[#f4efe6]/20 text-xs uppercase tracking-[0.2em] font-sans hover:bg-[#f4efe6]/10 transition-colors"
+                className="px-6 py-2.5 rounded border border-[#B49A68]/40 text-xs uppercase tracking-[0.2em] font-sans hover:bg-[#F3F0E8]/10 transition-colors"
               >
                 {language === 'hi' ? 'बंद करें' : 'Close'}
               </button>
@@ -92,14 +92,14 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
           </div>
         ) : (
           <div>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[#c8a44d] font-sans font-medium mb-1.5">
-              <Calendar className="w-4 h-4" />
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[#B49A68] font-sans font-medium mb-1.5">
+              <Calendar className="w-4 h-4 text-[#B49A68]" />
               <span>{language === 'hi' ? 'शोरूम अपॉइंटमेंट' : 'Showroom Consultation'}</span>
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl text-[#f4efe6] mb-2 font-normal">
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#F3F0E8] mb-2 font-normal">
               {language === 'hi' ? 'व्यक्तिगत ट्रायल व कंसल्टेशन' : 'Book a VIP Fitting Trial'}
             </h3>
-            <p className="text-xs text-[#c9c3b7] font-light mb-6">
+            <p className="text-xs text-[#DED6C8] font-light mb-6 font-sans">
               {language === 'hi'
                 ? 'शादी की शेरवानी, त्योहार कुर्ते, या बच्चों के खास परिधानों के चयन के लिए हमारे मरहटल स्टोर में समय आरक्षित करें।'
                 : 'Reserve dedicated styling assistance for wedding sherwanis, festive family sets, or boys formalwear at Marhatal.'}
@@ -108,7 +108,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
             <form onSubmit={handleSubmit} className="space-y-4 font-sans text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[#c9c3b7] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
+                  <label className="block text-[#DED6C8] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
                     {language === 'hi' ? 'पूरा नाम' : 'Full Name'} *
                   </label>
                   <input
@@ -117,11 +117,11 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="e.g. Vikram Sharma"
-                    className="w-full bg-[#1b1b1b] border border-[#f4efe6]/15 rounded px-3 py-2.5 text-sm text-[#f4efe6] focus:border-[#c8a44d] focus:outline-none transition-colors"
+                    className="w-full bg-[#171916] border border-[#B49A68]/30 rounded px-3 py-2.5 text-sm text-[#F3F0E8] focus:border-[#B49A68] focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#c9c3b7] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
+                  <label className="block text-[#DED6C8] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
                     {language === 'hi' ? 'मोबाइल नंबर' : 'Phone / WhatsApp'} *
                   </label>
                   <input
@@ -130,20 +130,20 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 98765 43210"
-                    className="w-full bg-[#1b1b1b] border border-[#f4efe6]/15 rounded px-3 py-2.5 text-sm text-[#f4efe6] focus:border-[#c8a44d] focus:outline-none transition-colors"
+                    className="w-full bg-[#171916] border border-[#B49A68]/30 rounded px-3 py-2.5 text-sm text-[#F3F0E8] focus:border-[#B49A68] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[#c9c3b7] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
+                  <label className="block text-[#DED6C8] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
                     {language === 'hi' ? 'संग्रह / अवसर' : 'Occasion / Category'}
                   </label>
                   <select
                     value={formData.occasion}
                     onChange={(e) => setFormData({ ...formData, occasion: e.target.value })}
-                    className="w-full bg-[#1b1b1b] border border-[#f4efe6]/15 rounded px-3 py-2.5 text-sm text-[#f4efe6] focus:border-[#c8a44d] focus:outline-none transition-colors cursor-pointer"
+                    className="w-full bg-[#171916] border border-[#B49A68]/30 rounded px-3 py-2.5 text-sm text-[#F3F0E8] focus:border-[#B49A68] focus:outline-none transition-colors cursor-pointer"
                   >
                     <option value="Groom Sherwani & Wedding">The Groom Sherwani (Wedding)</option>
                     <option value="Festive & Sangeet Kurtas">Festive & Sangeet Kurtas</option>
@@ -154,13 +154,13 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[#c9c3b7] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
+                  <label className="block text-[#DED6C8] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
                     {language === 'hi' ? 'पसंदीदा समय' : 'Time Slot'}
                   </label>
                   <select
                     value={formData.preferredTime}
                     onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-                    className="w-full bg-[#1b1b1b] border border-[#f4efe6]/15 rounded px-3 py-2.5 text-sm text-[#f4efe6] focus:border-[#c8a44d] focus:outline-none transition-colors cursor-pointer"
+                    className="w-full bg-[#171916] border border-[#B49A68]/30 rounded px-3 py-2.5 text-sm text-[#F3F0E8] focus:border-[#B49A68] focus:outline-none transition-colors cursor-pointer"
                   >
                     <option value="11:00 AM - 01:00 PM">Morning (11:00 AM - 01:00 PM)</option>
                     <option value="01:00 PM - 04:00 PM">Afternoon (01:00 PM - 04:00 PM)</option>
@@ -171,36 +171,36 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[#c9c3b7] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
+                <label className="block text-[#DED6C8] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
                   {language === 'hi' ? 'पसंदीदा तारीख (वैकल्पिक)' : 'Preferred Date (Optional)'}
                 </label>
                 <input
                   type="date"
                   value={formData.preferredDate}
                   onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                  className="w-full bg-[#1b1b1b] border border-[#f4efe6]/15 rounded px-3 py-2 text-sm text-[#f4efe6] focus:border-[#c8a44d] focus:outline-none transition-colors"
+                  className="w-full bg-[#171916] border border-[#B49A68]/30 rounded px-3 py-2 text-sm text-[#F3F0E8] focus:border-[#B49A68] focus:outline-none transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-[#c9c3b7] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
+                <label className="block text-[#DED6C8] uppercase tracking-wider text-[10px] mb-1.5 font-medium">
                   {language === 'hi' ? 'विशेष आवश्यकता या टिप्पणी' : 'Special Notes / Preferences'}
                 </label>
                 <textarea
                   rows={2}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder="e.g. Need matching outfits for father & son for wedding on 24th..."
-                  className="w-full bg-[#1b1b1b] border border-[#f4efe6]/15 rounded px-3 py-2 text-sm text-[#f4efe6] focus:border-[#c8a44d] focus:outline-none transition-colors resize-none"
+                  placeholder="e.g. Looking for father & son matching ethnic sets for wedding..."
+                  className="w-full bg-[#171916] border border-[#B49A68]/30 rounded px-3 py-2 text-sm text-[#F3F0E8] focus:border-[#B49A68] focus:outline-none transition-colors resize-none"
                 />
               </div>
 
               <div className="pt-3">
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-[#f4efe6] hover:bg-[#c8a44d] text-[#0d0d0d] py-3 rounded-full text-xs uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5"
+                  className="w-full flex items-center justify-center gap-2 bg-[#263D32] hover:bg-[#2e4a3d] border border-[#B49A68]/40 text-[#F3F0E8] py-3 rounded text-xs uppercase tracking-[0.2em] font-semibold transition-all duration-200 shadow-md hover:-translate-y-0.5"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <MessageCircle className="w-4 h-4 text-[#B49A68]" />
                   <span>{language === 'hi' ? 'व्हाट्सएप पर अपॉइंटमेंट भेजें' : 'Send Request via WhatsApp'}</span>
                 </button>
               </div>
